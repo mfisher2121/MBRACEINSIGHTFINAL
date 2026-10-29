@@ -1,0 +1,15 @@
+.netlify
+.env
+.env.*
+node_modules
+.DS_Store
+untitled folder
+*.log
+
+/_archive/
+/*.pdf
+/*.html
+/*.json
+!/package.json
+/*_1.md
+/Davis-Davis-Leave-Behind-Letter.md

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Home Electrification Decision Center — Mid-Atlantic Working Demo | MBRACE Insight</title>
+<meta name="description" content="A working demo of decision-support tools for Mid-Atlantic homeowners: rebate estimator, heat pump operating cost calculator, and electrification readiness score. Built by MBRACE Insight LLC — white-labeled for your HVAC company.">
+<meta property="og:title" content="The Home Electrification Decision Center — Working Demo">
+<meta property="og:description" content="Most HVAC websites optimize for lead generation. This one optimizes for decision support. Try the live tools.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230e0e0c'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23c8972e' font-family='Georgia'>D</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Inconsolata:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0e0e0c; --surface:#161614; --surface-2:#1e1e1b; --surface-3:#252522;
+  --gold:#c8972e; --gold-dim:#8a6820; --gold-pale:rgba(200,151,46,.08);
+  --cream:#f0ead8; --cream-dim:#9a9080;
+  --red:#c04030; --red-pale:rgba(192,64,48,.1);
+  --green:#3a7a50; --green-pale:rgba(58,122,80,.1); --green-ink:#6ab880;
+  --bar-hp:#b8892a; --bar-cur:#4a90c4;
+  --rule:rgba(255,255,255,.07);
+  --serif:'DM Serif Display',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif; --mono:'Inconsolata',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:var(--sans);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+::selection{background:var(--gold);color:var(--bg)}
+.mono-label{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.wrap{max-width:1060px;margin:0 auto;padding:0 40px}
+@media(max-width:680px){.wrap{padding:0 20px}}
+
+.topnav{position:sticky;top:0;z-index:50;background:rgba(14,14,12,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+.topnav-in{max-width:1060px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:56px}
+.topnav-brand{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--cream)}
+.topnav-brand em{color:var(--gold);font-style:normal}
+.topnav-links{display:flex;gap:20px}
+.topnav-links a{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--cream-dim);text-decoration:none;transition:color .15s}
+.topnav-links a:hover{color:var(--gold)}
+@media(max-width:820px){.topnav-links{display:none}}
+
+.hero{padding:88px 0 64px;border-bottom:1px solid var(--rule);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-120px;right:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(200,151,46,.10),transparent 65%);pointer-events:none}
+.hero h1{font-family:var(--serif);font-size:clamp(32px,5vw,58px);font-weight:400;line-height:1.1;margin:18px 0 22px;max-width:820px}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:16.5px;color:var(--cream-dim);max-width:660px;line-height:1.75}
+.hero-sub strong{color:var(--cream)}
+.hero-cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.btn-gold{display:inline-block;padding:13px 28px;background:var(--gold);color:var(--bg);font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;text-decoration:none;border-radius:3px;transition:background .15s}
+.btn-gold:hover{background:#dcb050}
+.btn-ghost{display:inline-block;padding:13px 28px;background:transparent;color:var(--cream);border:1px solid var(--gold-dim);font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;text-decoration:none;border-radius:3px;transition:border-color .15s}
+.btn-ghost:hover{border-color:var(--gold)}
+.hero-meta{display:flex;gap:26px;flex-wrap:wrap;margin-top:38px}
+.hero-meta div{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--cream-dim);max-width:170px;line-height:1.5}
+.hero-meta div span{color:var(--gold);display:block;font-size:21px;font-family:var(--serif);letter-spacing:0;margin-bottom:2px}
+
+.sec{padding:70px 0;border-bottom:1px solid var(--rule)}
+.sec h2{font-family:var(--serif);font-size:clamp(24px,3.4vw,38px);font-weight:400;line-height:1.15;margin:14px 0 16px;max-width:760px}
+.sec h2 em{font-style:italic;color:var(--gold)}
+.sec .lede{font-size:15.5px;color:var(--cream-dim);max-width:700px;line-height:1.75;margin-bottom:8px}
+.sec .lede strong{color:var(--cream)}
+
+.vis-band{background:var(--surface);border:1px solid var(--rule);border-radius:4px;padding:32px;margin-top:32px}
+.vis-band p{font-size:14.5px;color:var(--cream-dim);line-height:1.8;margin-bottom:14px;max-width:820px}
+.vis-band p:last-child{margin-bottom:0}
+.vis-band p strong{color:var(--cream)}
+.vis-band .big{font-family:var(--serif);font-size:clamp(19px,2.6vw,26px);color:var(--cream);line-height:1.4;margin-bottom:18px}
+.vis-band .big em{color:var(--gold);font-style:italic}
+
+/* ─── TOOLS ─── */
+.tool{background:var(--surface);border:1px solid var(--rule);border-radius:5px;margin-top:34px;overflow:hidden}
+.tool-hd{padding:24px 30px;border-bottom:1px solid var(--rule);background:var(--surface-2);display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.tool-hd h3{font-family:var(--serif);font-size:22px;font-weight:400}
+.tool-hd .demo-tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--green-ink);border:1px solid rgba(58,122,80,.4);padding:4px 10px;border-radius:2px}
+.tool-body{padding:28px 30px;display:grid;grid-template-columns:340px 1fr;gap:34px}
+@media(max-width:860px){.tool-body{grid-template-columns:1fr}}
+.field{margin-bottom:16px}
+.field label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-dim);margin-bottom:6px}
+.field select,.field input[type=number]{width:100%;background:var(--surface-3);border:1px solid var(--rule);border-radius:3px;color:var(--cream);font-family:var(--sans);font-size:14px;padding:10px 12px;outline:none}
+.field select:focus,.field input:focus{border-color:var(--gold-dim)}
+.field .hint{font-size:11px;color:var(--cream-dim);margin-top:4px;line-height:1.5}
+.result{min-width:0}
+.result-empty{color:var(--cream-dim);font-size:13.5px;font-style:italic;padding-top:8px}
+
+.stat-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:20px}
+.stat-tile{background:var(--surface-2);border:1px solid var(--rule);border-radius:4px;padding:16px 18px}
+.stat-tile .tl{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-dim);margin-bottom:6px;line-height:1.4}
+.stat-tile .tv{font-family:var(--serif);font-size:26px;color:var(--cream);line-height:1.1}
+.stat-tile .ts{font-size:11px;color:var(--cream-dim);margin-top:4px;line-height:1.4}
+.stat-tile.gold .tv{color:var(--gold)}
+.stat-tile.green .tv{color:var(--green-ink)}
+
+.inc-list{list-style:none;margin:0 0 18px}
+.inc-list li{display:flex;justify-content:space-between;gap:14px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--rule);font-size:13.5px}
+.inc-list li:last-child{border-bottom:none}
+.inc-name{color:var(--cream);line-height:1.5}
+.inc-name small{display:block;color:var(--cream-dim);font-size:11.5px;font-weight:400;margin-top:2px;line-height:1.5}
+.inc-amt{font-family:var(--mono);font-size:13.5px;color:var(--green-ink);white-space:nowrap;font-weight:600}
+.inc-amt.pending{color:var(--cream-dim)}
+.inc-amt.zero{color:#e07060}
+
+/* bars — palette validated dark-mode: #b8892a / #4a90c4 on #161614 */
+.bars{margin:6px 0 18px}
+.bar-row{margin-bottom:14px}
+.bar-lbl{display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px;color:var(--cream);margin-bottom:6px}
+.bar-lbl .amt{font-family:var(--mono);font-weight:600}
+.bar-track{background:var(--surface-3);border-radius:4px;height:18px;position:relative;overflow:hidden}
+.bar-fill{height:14px;margin:2px;border-radius:3px;transition:width .5s ease;min-width:8px}
+.bar-fill.cur{background:var(--bar-cur)}
+.bar-fill.hp{background:var(--bar-hp)}
+.bar-legend{display:flex;gap:18px;margin-top:4px}
+.bar-legend div{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10.5px;color:var(--cream-dim);letter-spacing:.06em}
+.bar-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+
+.why{background:var(--gold-pale);border-left:2px solid var(--gold);border-radius:0 3px 3px 0;padding:16px 18px;font-size:12.5px;color:var(--cream-dim);line-height:1.7;margin-top:6px}
+.why strong{color:var(--cream)}
+.why .why-t{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px}
+
+.score-wrap{display:flex;align-items:center;gap:24px;margin-bottom:20px;flex-wrap:wrap}
+.score-ring{width:110px;height:110px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative}
+.score-ring .inner{width:86px;height:86px;border-radius:50%;background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.score-ring .n{font-family:var(--serif);font-size:30px;color:var(--cream);line-height:1}
+.score-ring .d{font-family:var(--mono);font-size:9px;color:var(--cream-dim);letter-spacing:.1em;margin-top:2px}
+.score-verdict{font-size:14px;color:var(--cream);max-width:420px;line-height:1.65}
+.score-verdict small{display:block;color:var(--cream-dim);font-size:12.5px;margin-top:4px}
+.phase-list{list-style:none}
+.phase-list li{display:grid;grid-template-columns:30px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--rule);font-size:13px;color:var(--cream-dim);line-height:1.6}
+.phase-list li:last-child{border-bottom:none}
+.phase-list .pn{width:26px;height:26px;border-radius:50%;border:1px solid var(--gold-dim);color:var(--gold);font-family:var(--serif);font-size:13px;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.phase-list strong{color:var(--cream)}
+
+/* ─── ARCHITECTURE ─── */
+.arch{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:34px}
+@media(max-width:820px){.arch{grid-template-columns:1fr}}
+.arch-card{background:var(--surface);border:1px solid var(--rule);border-radius:4px;padding:26px 28px}
+.arch-card h3{font-family:var(--serif);font-size:20px;font-weight:400;margin:8px 0 14px}
+.tree{font-family:var(--mono);font-size:12px;line-height:1.9;color:var(--cream-dim);white-space:pre;overflow-x:auto}
+.tree b{color:var(--gold);font-weight:600}
+.tree i{color:var(--cream);font-style:normal}
+.chain{font-family:var(--mono);font-size:12px;line-height:2.1;color:var(--cream-dim)}
+.chain span{color:var(--cream);background:var(--surface-3);border:1px solid var(--rule);border-radius:3px;padding:2px 9px;display:inline-block;margin:2px 0}
+.chain em{color:var(--gold-dim);font-style:normal;padding:0 6px}
+
+.moat{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:34px}
+.moat-card{background:var(--surface);border:1px solid var(--rule);border-radius:4px;padding:22px;transition:border-color .15s}
+.moat-card:hover{border-color:var(--gold-dim)}
+.moat-card h4{font-family:var(--serif);font-size:16.5px;font-weight:400;margin-bottom:7px;color:var(--cream)}
+.moat-card p{font-size:12.5px;color:var(--cream-dim);line-height:1.65}
+
+.cta{padding:88px 0 96px}
+.cta h2{font-family:var(--serif);font-size:clamp(28px,4vw,46px);font-weight:400;line-height:1.12;margin:16px 0 20px;max-width:720px}
+.cta h2 em{font-style:italic;color:var(--gold)}
+.cta p{font-size:15px;color:var(--cream-dim);max-width:640px;line-height:1.75;margin-bottom:14px}
+.cta p strong{color:var(--cream)}
+.cta-sig{margin-top:34px;font-family:var(--mono);font-size:11.5px;color:var(--cream-dim);line-height:1.9;letter-spacing:.04em}
+.cta-sig span{color:var(--cream)}
+
+.foot{border-top:1px solid var(--rule);padding:26px 0 40px}
+.foot p{font-family:var(--mono);font-size:10px;color:var(--cream-dim);letter-spacing:.06em;line-height:1.9;max-width:900px}
+
+.rv{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-in">
+    <div class="topnav-brand">MBRACE <em>Insight</em> — Electrification Decision Center <span style="color:var(--cream-dim)">/ demo</span></div>
+    <div class="topnav-links">
+      <a href="#thesis">The Thesis</a>
+      <a href="#tools">Try the Tools</a>
+      <a href="#architecture">The Architecture</a>
+      <a href="#moat">The Moat</a>
+      <a href="#contact">Your Version</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="mono-label">Working demo · Mid-Atlantic · MD / VA / DC · August 2026</div>
+    <h1>Most HVAC websites optimize for lead generation.<br>This one optimizes for <em>decision support.</em></h1>
+    <p class="hero-sub">A working demo of the Home Electrification Decision Center: real tools, real 2026 incentive data, honest answers — including <strong>"a heat pump may not be right for your home."</strong> Built to show what it looks like when a contractor becomes the trusted educator instead of the loudest advertiser. <strong>This demo is unbranded on purpose. Your version carries your name.</strong></p>
+    <div class="hero-cta-row">
+      <a class="btn-gold" href="#tools">Try the live tools</a>
+      <a class="btn-ghost" href="#contact">See your branded version</a>
+    </div>
+    <div class="hero-meta">
+      <div><span>$0</span>federal 25C credit in 2026 — expired. We say so up front</div>
+      <div><span>$15,000</span>max EmPOWER Maryland whole-home pathway</div>
+      <div><span>$5,000</span>DCSEU gas-to-electric heat pump rebate</div>
+      <div><span>3</span>working tools below — of ten planned</div>
+    </div>
+  </div>
+</header>
+
+<!-- THESIS -->
+<section class="sec" id="thesis">
+  <div class="wrap rv">
+    <div class="mono-label">The Thesis</div>
+    <h2>Trust before conversion. <em>Every time.</em></h2>
+    <p class="lede">Electrification has made HVAC confusing: expiring tax credits, five utility rebate programs, income-qualified tiers that haven't launched, panel questions, historic-home constraints. Homeowners aren't short on contractors — they're short on <strong>someone who will explain it straight.</strong></p>
+    <div class="vis-band">
+      <p class="big">The positioning statement: <em>"We help homeowners make the right decision — even when that decision isn't immediate replacement."</em></p>
+      <p>Every tool on this page enforces that philosophy. Each result explains <strong>why</strong> it is what it is, names its assumptions, and flags when the honest answer is "wait," "repair," or "air-seal first." That's what earns return visits before the purchase, referrals after it — and citations from the AI systems homeowners increasingly ask first. Google and LLMs reward demonstrated expertise, original data, and structured local knowledge. Decision support <strong>is</strong> the visibility strategy.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="sec" id="tools">
+  <div class="wrap rv">
+    <div class="mono-label">Live Demo — Real 2026 Data</div>
+    <h2>The Homeowner Decision Center. <em>Working, not wireframed.</em></h2>
+    <p class="lede">Three of the ten planned tools, live. Amounts reflect program rules published as of August 2026 — including the ones the industry would rather not mention, like the expired federal credit.</p>
+
+    <!-- TOOL 1: REBATES -->
+    <div class="tool" id="tool-rebate">
+      <div class="tool-hd"><h3>Rebate &amp; Incentive Estimator</h3><span class="demo-tag">Live demo</span></div>
+      <div class="tool-body">
+        <div>
+          <div class="field"><label for="r-state">Where is the home?</label>
+            <select id="r-state"><option value="MD">Maryland</option><option value="VA">Virginia</option><option value="DC">Washington, DC</option></select></div>
+          <div class="field"><label for="r-util">Electric utility</label>
+            <select id="r-util"></select></div>
+          <div class="field"><label for="r-fuel">Current heating fuel</label>
+            <select id="r-fuel"><option value="gas">Natural gas</option><option value="oil">Heating oil</option><option value="propane">Propane</option><option value="resist">Electric baseboard / resistance</option><option value="oldhp">Older heat pump</option></select>
+            <div class="hint">Oil &amp; propane conversions typically qualify for the largest incentive tiers.</div></div>
+          <div class="field"><label for="r-sys">System being considered</label>
+            <select id="r-sys"><option value="cchp">Cold-climate ducted heat pump</option><option value="ashp">Standard ducted heat pump</option><option value="mini">Ductless mini-split</option></select></div>
+          <div class="field"><label for="r-income">Household income</label>
+            <select id="r-income"><option value="na">Prefer not to say</option><option value="low">At or below 80% of area median</option><option value="mid">80–150% of area median</option><option value="high">Above 150% of area median</option></select>
+            <div class="hint">Only used to show income-qualified programs. Nothing is stored.</div></div>
+        </div>
+        <div class="result" id="r-out"></div>
+      </div>
+    </div>
+
+    <!-- TOOL 2: OPERATING COST -->
+    <div class="tool" id="tool-cost">
+      <div class="tool-hd"><h3>Heat Pump vs. Your Current System — Annual Heating Cost</h3><span class="demo-tag">Live demo</span></div>
+      <div class="tool-body">
+        <div>
+          <div class="field"><label for="c-state">State</label>
+            <select id="c-state"><option value="MD">Maryland</option><option value="VA">Virginia</option><option value="DC">Washington, DC</option></select></div>
+          <div class="field"><label for="c-sqft">Home size (sq ft)</label>
+            <input type="number" id="c-sqft" value="2000" min="500" max="8000" step="100"></div>
+          <div class="field"><label for="c-age">Home era</label>
+            <select id="c-age"><option value="1.3">Before 1960</option><option value="1.1" selected>1960 – 1990</option><option value="0.95">1990 – 2010</option><option value="0.8">After 2010</option></select>
+            <div class="hint">Older envelopes leak more heat. An audit refines this.</div></div>
+          <div class="field"><label for="c-fuel">Current system</label>
+            <select id="c-fuel"><option value="gas">Natural gas furnace</option><option value="oil">Oil furnace / boiler</option><option value="propane">Propane furnace</option><option value="resist">Electric baseboard</option><option value="oldhp">Heat pump (10+ yrs old)</option></select></div>
+          <div class="field"><label for="c-elec">Electricity rate ($/kWh)</label>
+            <input type="number" id="c-elec" value="0.175" step="0.005" min="0.05" max="0.5">
+            <div class="hint">Defaults to your state's average. Edit to match your bill.</div></div>
+          <div class="field" id="c-fuelprice-wrap"><label for="c-fuelprice">Fuel price</label>
+            <input type="number" id="c-fuelprice" value="1.55" step="0.05" min="0.1">
+            <div class="hint" id="c-fuelprice-hint">$/therm</div></div>
+        </div>
+        <div class="result" id="c-out"></div>
+      </div>
+    </div>
+
+    <!-- TOOL 3: READINESS -->
+    <div class="tool" id="tool-ready">
+      <div class="tool-hd"><h3>Electrification Readiness Score</h3><span class="demo-tag">Live demo</span></div>
+      <div class="tool-body">
+        <div>
+          <div class="field"><label for="y-panel">Electrical panel</label>
+            <select id="y-panel"><option value="200">200 amps</option><option value="150">150 amps</option><option value="100">100 amps</option><option value="unk" selected>Not sure</option></select></div>
+          <div class="field"><label for="y-duct">Ductwork</label>
+            <select id="y-duct"><option value="full">Full ductwork, decent shape</option><option value="partial">Partial / aging ductwork</option><option value="none">No ductwork (radiators, baseboard)</option></select></div>
+          <div class="field"><label for="y-age">Home era</label>
+            <select id="y-age"><option value="new">After 2010</option><option value="mid2">1990 – 2010</option><option value="mid1" selected>1960 – 1990</option><option value="old">Before 1960</option></select></div>
+          <div class="field"><label for="y-env">Envelope (insulation &amp; air sealing)</label>
+            <select id="y-env"><option value="tested">Audited &amp; air-sealed</option><option value="some">Some insulation work done</option><option value="unk" selected>Never assessed</option></select></div>
+          <div class="field"><label for="y-fuel">Current fuel</label>
+            <select id="y-fuel"><option value="gas">Natural gas</option><option value="oil">Oil</option><option value="propane">Propane</option><option value="resist">Electric resistance</option></select></div>
+        </div>
+        <div class="result" id="y-out"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section class="sec" id="architecture">
+  <div class="wrap rv">
+    <div class="mono-label">The Architecture</div>
+    <h2>A knowledge graph, <em>not a website.</em></h2>
+    <p class="lede">Fifty generic service pages can't answer a Bethesda homeowner's question about her 1948 colonial. A knowledge graph can — because every county, neighborhood, topic, and real project is a connected node. <strong>Thousands of interconnected resources, each earning its own search visibility, each reinforcing the rest.</strong></p>
+    <div class="arch">
+      <div class="arch-card">
+        <div class="mono-label">Geographic spine</div>
+        <h3>Every county. Every neighborhood.</h3>
+        <div class="tree"><b>Maryland</b>
+ ├── <i>Montgomery County</i>
+ │     ├── Bethesda · Rockville · Potomac
+ │     ├── Silver Spring · Germantown
+ │     └── Kensington · Chevy Chase
+ ├── <i>Frederick County</i>
+ │     └── Frederick · Thurmont · Emmitsburg
+ └── <i>Howard · PG · Anne Arundel…</i>
+<b>Virginia</b>
+ ├── <i>Fairfax · Arlington · Alexandria</i>
+ └── <i>Loudoun · Prince William</i>
+<b>District of Columbia</b>
+ └── <i>By quadrant &amp; housing era</i></div>
+      </div>
+      <div class="arch-card">
+        <div class="mono-label">Topic clusters, interlinked</div>
+        <h3>Every page connects forward.</h3>
+        <div class="chain"><span>Heat pump</span><em>→</em><span>Electrical panel</span><em>→</em><span>Rebates by utility</span><em>→</em><span>Historic homes</span><em>→</em><span>Indoor air quality</span><em>→</em><span>Smart thermostats</span><em>→</em><span>Energy audit</span><em>→</em><span>BEPS compliance</span></div>
+        <p style="font-size:12.5px;color:var(--cream-dim);line-height:1.65;margin-top:14px">Each topic branches into county-level and housing-era-level versions — heat pumps for plaster-wall homes, panel upgrades in pre-war rowhouses, rebates by ZIP. Isolated landing pages compete for one query; a graph <strong style="color:var(--cream)">owns entire territories.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOAT -->
+<section class="sec" id="moat">
+  <div class="wrap rv">
+    <div class="mono-label">Full Build</div>
+    <h2>What makes it <em>impossible to copy</em></h2>
+    <p class="lede">Any competitor can buy a redesign. None of them can fake proprietary local data compounding month after month.</p>
+    <div class="moat">
+      <div class="moat-card"><h4>Address-level rebate lookup</h4><p>Enter an address → utility territory, live program amounts, income-qualified tiers, and current application status. The tool version of the page nobody in this market has even written.</p></div>
+      <div class="moat-card"><h4>Aerial thermal envelope intelligence</h4><p>Drone thermal imaging that shows a homeowner exactly where their house leaks heat — informing right-sizing before any equipment quote. Original data no directory site can reproduce.</p></div>
+      <div class="moat-card"><h4>Real project library</h4><p>Every install documented: neighborhood, housing era, equipment, permits, before/after performance. Case studies as proof — and as the training data for AI-powered guidance grounded in your own jobs.</p></div>
+      <div class="moat-card"><h4>Building-age intelligence</h4><p>Decision trees by construction era: balloon framing, plaster walls, cast-iron radiators, no ductwork. The historic-home authority position, systematized.</p></div>
+      <div class="moat-card"><h4>BEPS &amp; code radar</h4><p>Building Performance Standards, permit requirements, and incentive changes tracked continuously — so homeowners, contractors, and even municipalities treat the platform as the reference.</p></div>
+      <div class="moat-card"><h4>Electrification roadmaps</h4><p>Saved, phased plans — audit now, panel next year, heat pump when the furnace dies — so homeowners plan calmly instead of deciding in an emergency. Return visits are the metric.</p></div>
+    </div>
+    <div class="vis-band" style="margin-top:30px">
+      <p class="big">Measure trust, not just leads: <em>return visits, calculator sessions, saved plans, guide downloads.</em></p>
+      <p>Form submissions measure interruption. These measure trust — and trust is what compounds. A homeowner who uses the calculator three times before their furnace dies doesn't get three quotes when it does. <strong>They call the company whose tools they've been using.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="wrap rv">
+    <div class="mono-label">MBRACE Insight LLC</div>
+    <h2>This demo is generic.<br><em>Your version won't be.</em></h2>
+    <p>Your brand. Your service area's counties and neighborhoods. Your utility territories' live numbers. Your real jobs feeding the project library. Built and maintained as a system — content, tools, data, and Google Business Profile cadence — mapped to the exact gaps your competitors have left open.</p>
+    <p><strong>If you lead an HVAC company in the Mid-Atlantic, the first conversation is twenty minutes:</strong> I'll show you your market's version of this platform — your competitors' content gaps, your housing stock, your rebate territory.</p>
+    <a class="btn-gold" href="mailto:mfisher2121@gmail.com?subject=Electrification%20Decision%20Center%20—%20show%20me%20my%20market's%20version">Request your market walkthrough</a>
+    <div class="cta-sig">
+      <span>Max Fisher</span> · MBRACE Insight LLC<br>
+      Gaithersburg, Maryland · Serving the DMV &amp; Mid-Atlantic<br>
+      mfisher2121@gmail.com
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>Demo by MBRACE Insight LLC, August 2026. All calculator outputs are educational estimates, not quotes or tax/financial advice. Incentive amounts and statuses reflect publicly posted program rules as of August 2026 and change frequently — verify with EmPOWER Maryland utilities (BGE, Pepco, Potomac Edison, SMECO, Delmarva), DCSEU/DOEE, Dominion Energy, Washington Gas, and your state energy office before relying on any figure. Federal 25C/25D tax credits expired December 31, 2025. HEAR income-qualified rebate programs in MD and VA were not yet accepting applications at time of publication. Operating-cost results use regional averages for fuel prices, climate, and equipment efficiency; a Manual J load calculation and blower door test are the accurate path. No user inputs are stored or transmitted.</p>
+  </div>
+</footer>
+
+<script>
+/* ───────── shared data ───────── */
+const UTILS = {
+  MD: [["bge","BGE"],["pepco","Pepco"],["pe","Potomac Edison"],["smeco","SMECO"],["delmarva","Delmarva Power"]],
+  VA: [["dom","Dominion Energy"],["apco","Appalachian Power"],["novec","NOVEC / Co-op"]],
+  DC: [["pepdc","Pepco (DC)"]]
+};
+const ELEC_RATE = {MD:0.175, VA:0.145, DC:0.17};
+const FUEL_META = {
+  gas:{label:"Natural gas furnace",unit:"$/therm",price:1.55,btu:100000,eff:0.85},
+  oil:{label:"Oil system",unit:"$/gallon",price:3.60,btu:138500,eff:0.80},
+  propane:{label:"Propane furnace",unit:"$/gallon",price:3.30,btu:91500,eff:0.82},
+  resist:{label:"Electric baseboard",unit:"$/kWh",price:null,btu:3412,eff:1.0},
+  oldhp:{label:"Older heat pump",unit:"$/kWh",price:null,btu:3412,eff:2.2}
+};
+const fmt = n => "$" + Math.round(n).toLocaleString();
+
+/* ───────── tool 1: rebates ───────── */
+const rS=document.getElementById('r-state'), rU=document.getElementById('r-util'),
+      rF=document.getElementById('r-fuel'), rSys=document.getElementById('r-sys'),
+      rI=document.getElementById('r-income'), rOut=document.getElementById('r-out');
+
+function fillUtils(){ rU.innerHTML = UTILS[rS.value].map(u=>`<option value="${u[0]}">${u[1]}</option>`).join(''); }
+
+function calcRebates(){
+  const st=rS.value, util=rU.value, fuel=rF.value, sys=rSys.value, inc=rI.value;
+  const items=[]; let minT=0, maxT=0;
+  const fuelConv = (fuel==='gas'||fuel==='oil'||fuel==='propane');
+
+  items.push({n:"Federal 25C tax credit", s:"Expired Dec 31, 2025 — no federal HVAC tax credit exists for 2026 installations. Anyone telling you otherwise is selling.", a:"$0", cls:"zero"});
+
+  if(st==='MD'){
+    const mid = sys==='cchp'?1700: sys==='ashp'?1300: 800;
+    items.push({n:"EmPOWER instant rebate (midstream)", s:"Applied at purchase through participating distributors — no audit required. Amount shown for your selected system type.", a:"up to "+fmt(mid), lo:mid*0.6, hi:mid});
+    if(fuelConv){
+      items.push({n:"EmPOWER whole-home electrification pathway", s:"Fuel-switching projects: up to $15,000 or 75% of cost. Requires a ~$100 home energy audit first — which is also how your system gets sized right.", a:"up to $15,000", lo:3000, hi:15000});
+    }
+    if(util==='pe'){
+      items.push({n:"Potomac Edison Switch-to-Electric", s:"Western Maryland bonus on top of EmPOWER — combined cold-climate incentives can reach ~$5,700.", a:"up to $4,000", lo:1000, hi:4000});
+    }
+    if(inc==='low'){
+      items.push({n:"Maryland HEAR (income-qualified)", s:"Up to $8,000 for heat pumps at ≤80% area median income. NOT yet accepting applications as of Aug 2026 — worth timing your project around. We'll say so honestly.", a:"up to $8,000", cls:"pending"});
+    }
+  }
+  if(st==='VA'){
+    if(util==='dom'){
+      items.push({n:"Dominion Home Retrofit rebates", s:"Variable amounts via participating-contractor pathway; requires an energy assessment. EnergyShare offers free upgrades at ≤80% AMI.", a:"varies", lo:200, hi:1500});
+    }
+    if(util==='apco'){
+      items.push({n:"Appalachian Power rebates", s:"Ductless mini-split $300; additional audit-based measures up to $400/unit.", a:"up to $400", lo:300, hi:400});
+    }
+    if(fuel==='gas'){
+      items.push({n:"Washington Gas dual-fuel option (NoVA)", s:"$1,400–$2,000 for qualifying dual-fuel heat pump setups — an honest middle path if full electrification isn't right yet.", a:"up to $2,000", lo:1400, hi:2000});
+    }
+    if(inc==='low'||inc==='mid'){
+      const amt = inc==='low' ? "$8,000":"$4,000";
+      items.push({n:"Virginia HEAR (income-qualified)", s:`Up to ${amt} for your income tier ($14,000 household cap). $94M allocated; NOT yet accepting applications as of Aug 2026.`, a:"up to "+amt, cls:"pending"});
+    }
+  }
+  if(st==='DC'){
+    if(fuelConv){
+      items.push({n:"DCSEU gas-to-electric heat pump rebate", s:"Up to $5,000 for converting from gas heat — plus up to $2,000 for a 200A panel upgrade and $400/circuit (max 3) if electrical work is needed.", a:"up to $5,000", lo:1500, hi:5000});
+      items.push({n:"DCSEU electrical make-ready", s:"Panel + circuit support when the conversion requires it. Combined DCSEU stack can approach ~$8,600.", a:"up to $3,200", lo:0, hi:3200});
+    } else {
+      items.push({n:"DCSEU heat pump rebates", s:"Efficiency-based rebates for heat pump installations; largest amounts apply to fuel conversions.", a:"varies", lo:500, hi:2000});
+    }
+    if(inc==='low'||inc==='mid'){
+      items.push({n:"DC HEAR via DOEE (income-qualified)", s:"Up to $14,000 combined for qualifying households. The no-cost Affordable Home Electrification Program is currently waitlisted — we'll tell you that, not bury it.", a:"up to $14,000", cls:"pending"});
+    }
+  }
+
+  items.forEach(it=>{ if(it.lo!=null){minT+=it.lo; maxT+=it.hi;} });
+
+  const fuelNote = fuel==='oil'||fuel==='propane'
+    ? `Because you heat with ${fuel}, you're in the <strong>highest-value conversion tier</strong> — delivered-fuel homes see the biggest incentive stacks and usually the biggest operating savings.`
+    : fuel==='resist' ? `Replacing electric resistance with a heat pump typically cuts heating electricity use by half or more — the incentive stack is smaller, but the bill savings are the story.`
+    : `Gas conversions qualify for real incentives, but gas is also the closest cost race — see the operating cost tool below before deciding. Sometimes the honest answer is "not yet."`;
+
+  rOut.innerHTML = `
+    <div class="stat-tiles">
+      <div class="stat-tile green"><div class="tl">Estimated stack (active programs)</div><div class="tv">${fmt(minT)}–${fmt(maxT)}</div><div class="ts">before income-qualified programs</div></div>
+      <div class="stat-tile"><div class="tl">Programs found</div><div class="tv">${items.length}</div><div class="ts">for your inputs</div></div>
+    </div>
+    <ul class="inc-list">${items.map(it=>`<li><div class="inc-name">${it.n}<small>${it.s}</small></div><div class="inc-amt ${it.cls||''}">${it.a}</div></li>`).join('')}</ul>
+    <div class="why"><span class="why-t">Why this result</span>
+    ${fuelNote} Ranges reflect published program rules as of August 2026; final amounts depend on equipment specs, audit results, and program funding. <strong>Next honest step:</strong> a ~$100 energy audit — it unlocks the whole-home pathways and tells you what your house actually needs.</div>`;
+}
+rS.addEventListener('change',()=>{fillUtils();calcRebates();});
+[rU,rF,rSys,rI].forEach(el=>el.addEventListener('change',calcRebates));
+
+/* ───────── tool 2: operating cost ───────── */
+const cS=document.getElementById('c-state'), cSq=document.getElementById('c-sqft'),
+      cA=document.getElementById('c-age'), cF=document.getElementById('c-fuel'),
+      cE=document.getElementById('c-elec'), cP=document.getElementById('c-fuelprice'),
+      cPh=document.getElementById('c-fuelprice-hint'), cPw=document.getElementById('c-fuelprice-wrap'),
+      cOut=document.getElementById('c-out');
+
+function syncFuelPrice(){
+  const m=FUEL_META[cF.value];
+  if(m.price===null){ cPw.style.display='none'; }
+  else { cPw.style.display='block'; cP.value=m.price; cPh.textContent=m.unit; }
+}
+
+function calcCost(){
+  const m=FUEL_META[cF.value];
+  const sqft=Math.max(400,parseFloat(cSq.value)||2000);
+  const ageF=parseFloat(cA.value);
+  const elec=Math.max(0.03,parseFloat(cE.value)||ELEC_RATE[cS.value]);
+  const loadMMBTU = (sqft/1000)*28*ageF;               // annual delivered heat, MMBTU
+  let curCost;
+  if(cF.value==='resist'||cF.value==='oldhp'){
+    const kwh = loadMMBTU*293.07/m.eff; curCost = kwh*elec;
+  } else {
+    const unitPrice=Math.max(0.1,parseFloat(cP.value)||m.price);
+    const units = loadMMBTU*1e6/(m.btu*m.eff); curCost = units*unitPrice;
+  }
+  const hpKwh = loadMMBTU*293.07/2.9;                   // cold-climate seasonal COP ~2.9
+  const hpCost = hpKwh*elec;
+  const diff = curCost-hpCost;
+  const maxV=Math.max(curCost,hpCost);
+  const pc=Math.max(6,curCost/maxV*100), ph=Math.max(6,hpCost/maxV*100);
+  const verdict = diff>150
+    ? `A cold-climate heat pump saves an estimated <strong>${fmt(diff)}/year</strong> on heating for this home. Over a 15-year life that's roughly ${fmt(diff*15)} — before rebates on the install.`
+    : diff>-150
+    ? `<strong>Honest answer: it's close to a wash on operating cost.</strong> For gas homes at current prices, that's common. The case then rests on rebates, adding efficient cooling, avoiding a future gas hookup — or waiting. Both answers are legitimate.`
+    : `<strong>Honest answer: a heat pump would likely cost more to run</strong> at your rates and prices — about ${fmt(-diff)}/year more. Air-sealing first, or a dual-fuel setup, may serve you better. We'd rather tell you that than sell you one.`;
+  cOut.innerHTML = `
+    <div class="stat-tiles">
+      <div class="stat-tile"><div class="tl">Current: ${FUEL_META[cF.value].label}</div><div class="tv">${fmt(curCost)}</div><div class="ts">est. annual heating</div></div>
+      <div class="stat-tile gold"><div class="tl">Cold-climate heat pump</div><div class="tv">${fmt(hpCost)}</div><div class="ts">est. annual heating</div></div>
+      <div class="stat-tile ${diff>0?'green':''}"><div class="tl">Difference</div><div class="tv">${diff>=0?fmt(diff):'–'+fmt(-diff)}</div><div class="ts">${diff>=0?'saved per year':'more per year'}</div></div>
+    </div>
+    <div class="bars">
+      <div class="bar-row"><div class="bar-lbl"><span>Current system</span><span class="amt">${fmt(curCost)}/yr</span></div>
+        <div class="bar-track"><div class="bar-fill cur" style="width:${pc}%"></div></div></div>
+      <div class="bar-row"><div class="bar-lbl"><span>Cold-climate heat pump</span><span class="amt">${fmt(hpCost)}/yr</span></div>
+        <div class="bar-track"><div class="bar-fill hp" style="width:${ph}%"></div></div></div>
+      <div class="bar-legend"><div><i style="background:var(--bar-cur)"></i>Current system</div><div><i style="background:var(--bar-hp)"></i>Heat pump</div></div>
+    </div>
+    <div class="why"><span class="why-t">Why this result</span>
+    ${verdict}<br><br>Model: ~${Math.round(loadMMBTU)} MMBTU/yr of delivered heat for ${sqft.toLocaleString()} sq ft of this era in the Mid-Atlantic climate (~4,700 heating degree days); your system at ${cF.value==='oldhp'?'COP 2.2':cF.value==='resist'?'100% efficiency':Math.round(m.eff*100)+'% efficiency'}, a modern cold-climate heat pump at seasonal COP 2.9. Electricity at $${elec.toFixed(3)}/kWh. <strong>A blower door test and Manual J calculation replace these estimates with your home's real numbers — that's the sequence that protects you.</strong></div>`;
+}
+cF.addEventListener('change',()=>{syncFuelPrice();calcCost();});
+cS.addEventListener('change',()=>{cE.value=ELEC_RATE[cS.value];calcCost();});
+[cSq,cA,cE,cP].forEach(el=>el.addEventListener('input',calcCost));
+
+/* ───────── tool 3: readiness ───────── */
+const yP=document.getElementById('y-panel'), yD=document.getElementById('y-duct'),
+      yA=document.getElementById('y-age'), yE=document.getElementById('y-env'),
+      yF=document.getElementById('y-fuel'), yOut=document.getElementById('y-out');
+
+function calcReady(){
+  const panelPts={ "200":25,"150":18,"100":8,"unk":12 }[yP.value];
+  const ductPts={ full:20,partial:13,none:9 }[yD.value];
+  const agePts={ new:15,mid2:12,mid1:9,old:6 }[yA.value];
+  const envPts={ tested:25,some:15,unk:5 }[yE.value];
+  const fuelPts={ oil:15,propane:15,resist:12,gas:10 }[yF.value];
+  const score=panelPts+ductPts+agePts+envPts+fuelPts;
+
+  const phases=[];
+  if(yE.value!=='tested') phases.push("<strong>Energy audit + blower door test (~$100 in MD).</strong> Before any equipment decision. It right-sizes the system, unlocks whole-home rebate pathways, and often finds cheap air-sealing wins that shrink the heat pump you need.");
+  if(yP.value==='100'||yP.value==='unk') phases.push(`<strong>${yP.value==='unk'?'Confirm panel capacity.':'Plan the panel.'}</strong> Many homes electrify on existing panels with smart load management; others need a 200A upgrade${' '}— in DC, DCSEU rebates up to $2,000 for exactly this.`);
+  if(yD.value==='none') phases.push("<strong>Design around no ductwork.</strong> Ductless mini-splits or a hydronic-compatible path preserve plaster walls and radiators — the historic-home playbook, not the tract-home one.");
+  else if(yD.value==='partial') phases.push("<strong>Duct assessment.</strong> Leaky ducts waste 20–30% of what you pay for; sealing may come before equipment.");
+  phases.push((yF.value==='oil'||yF.value==='propane')
+    ? "<strong>Time the conversion.</strong> Delivered-fuel homes get the strongest incentive stacks — replace on your schedule, not the day the tank runs dry in January."
+    : "<strong>Choose the moment.</strong> If your current system is healthy, plan now and convert at end of life — an emergency replacement is where bad decisions happen.");
+
+  const band = score>=80?["Ready now","Your home can likely electrify in one step. Get the audit, then quotes."]
+    : score>=60?["Nearly ready","One or two prep items first — cheap ones, mostly. Phased plan below."]
+    : score>=40?["Phase it","Very electrifiable — in the right order. Skipping steps here is what creates oversized, underperforming systems."]
+    : ["Foundation first","Envelope and electrical groundwork will pay for itself before equipment ever arrives. That's not a no — it's a sequence."];
+
+  const pct=score, ring=`conic-gradient(var(--gold) ${pct*3.6}deg, var(--surface-3) 0deg)`;
+  yOut.innerHTML = `
+    <div class="score-wrap">
+      <div class="score-ring" style="background:${ring}"><div class="inner"><div class="n">${score}</div><div class="d">/ 100</div></div></div>
+      <div class="score-verdict"><strong>${band[0]}.</strong> ${band[1]}<small>Score reflects panel, ductwork, era, envelope, and fuel — the five things that decide whether a heat pump thrives or disappoints.</small></div>
+    </div>
+    <ul class="phase-list">${phases.map((p,i)=>`<li><span class="pn">${i+1}</span><span>${p}</span></li>`).join('')}</ul>
+    <div class="why"><span class="why-t">Why this result</span>
+    The score isn't a sales gate — homes scoring 40 electrify successfully all the time, <strong>in the right sequence</strong>. Envelope before equipment, sizing before selection. An oversized heat pump in a leaky house is how electrification gets a bad name; the audit-first sequence is how it earns a good one.</div>`;
+}
+[yP,yD,yA,yE,yF].forEach(el=>el.addEventListener('change',calcReady));
+
+/* ───────── init + reveal ───────── */
+fillUtils(); calcRebates(); syncFuelPrice(); calcCost(); calcReady();
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}}),{threshold:.06});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

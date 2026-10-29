@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#16202f">
+<title>MBRACE Insight — Own Your Local HVAC Market</title>
+<meta name="description" content="MBRACE Insight helps independent DMV HVAC companies reduce paid-lead dependence by building local visibility, useful authority content, reputation systems, and measurable marketing attribution.">
+<meta property="og:title" content="MBRACE Insight — Own Your Local HVAC Market">
+<meta property="og:description" content="Build the visibility, proof, and attribution system that lets an independent HVAC company compete without trying to outspend private equity.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2316202f'/><text x='50' y='70' font-size='56' font-weight='700' text-anchor='middle' fill='%232eb59f' font-family='Arial'>M</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#16202f;--navy2:#1d2b3f;--navy3:#101827;
+  --teal:#2eb59f;--teal-dark:#1f9382;--teal-pale:#e7f6f2;--teal-ink:#177a6c;
+  --orange:#e2683b;--orange-dark:#d05a2f;--orange-pale:#fdeee6;
+  --coral:#e25c4a;--coral-pale:#fdefec;
+  --bg:#f6f8fa;--card:#ffffff;--line:#e5eaef;
+  --ink:#1c2733;--text:#414c59;--muted:#68737f;
+  --on-navy:#c3cdd9;--on-navy-dim:#8d99a8;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+  --r:12px;
+  --shadow:0 1px 2px rgba(16,24,40,.05),0 4px 14px rgba(16,24,40,.05);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{background:var(--bg);color:var(--ink);font:16px/1.7 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}button,input{font:inherit}
+::selection{background:var(--teal);color:#fff}
+
+.progress{position:fixed;z-index:1000;left:0;top:0;width:0;height:3px;background:var(--teal)}
+
+/* ── NAV ── */
+.nav{height:68px;position:sticky;top:0;z-index:100;background:rgba(22,32,47,.97);backdrop-filter:blur(8px);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
+.navin{max-width:1120px;height:100%;margin:auto;padding:0 28px;display:flex;align-items:center;gap:30px}
+.logo{text-decoration:none;display:flex;align-items:center;gap:11px;white-space:nowrap}
+.mark{width:34px;height:34px;border-radius:9px;background:var(--teal);display:grid;place-items:center;font-weight:800;font-size:16px;color:#fff}
+.logocopy strong{display:block;font-size:14px;font-weight:700;letter-spacing:.01em}
+.logocopy span{display:block;font-size:10px;letter-spacing:.1em;color:var(--on-navy-dim);text-transform:uppercase;font-weight:500}
+.navlinks{margin-left:auto;display:flex;align-items:center;gap:26px}
+.navlinks a{text-decoration:none;font-size:13px;font-weight:600;color:var(--on-navy)}
+.navlinks a:hover{color:#fff}
+.navcta{background:var(--orange);color:#fff!important;padding:10px 18px;border-radius:8px;transition:background .15s}
+.navcta:hover{background:var(--orange-dark)}
+.menu{display:none;margin-left:auto;border:1px solid rgba(255,255,255,.25);border-radius:8px;background:none;color:#fff;padding:8px 12px;font-size:12px;font-weight:700;cursor:pointer}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-160px;right:-160px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(46,181,159,.14),transparent 65%)}
+.heroin{max-width:1120px;margin:auto;padding:96px 28px 84px;display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center;position:relative;z-index:1}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--teal);text-transform:uppercase;margin-bottom:20px;background:rgba(46,181,159,.12);border:1px solid rgba(46,181,159,.35);padding:6px 14px;border-radius:100px}
+h1{font-size:clamp(38px,5.4vw,62px);line-height:1.08;font-weight:800;letter-spacing:-.03em;max-width:800px}
+h1 em{font-style:normal;color:var(--teal)}
+.lead{font-size:18px;line-height:1.7;color:var(--on-navy);max-width:640px;margin:24px 0 32px}
+.lead strong{color:#fff}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;justify-content:center;align-items:center;text-decoration:none;border:1px solid transparent;padding:14px 26px;font-size:14px;font-weight:700;border-radius:10px;cursor:pointer;transition:all .15s}
+.primary{background:var(--orange);color:#fff}
+.primary:hover{background:var(--orange-dark);transform:translateY(-1px)}
+.ghost{border-color:rgba(255,255,255,.28);color:#fff}
+.ghost:hover{border-color:var(--teal);color:var(--teal)}
+.heroaside{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:26px}
+.asidehead{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.heroitem{display:grid;grid-template-columns:56px 1fr;gap:14px;padding:15px 0;border-top:1px solid rgba(255,255,255,.08);align-items:center}
+.heroitem:first-of-type{border-top:none}
+.heroitem b{font-size:28px;font-weight:800;color:var(--teal)}
+.heroitem span{font-size:13px;color:var(--on-navy);line-height:1.55}
+
+/* ── TRUTH BAR ── */
+.truth{background:linear-gradient(120deg,var(--teal) 0%,#3d9e6e 100%);color:#fff;padding:18px 28px;text-align:center;font-size:14.5px;font-weight:700}
+
+/* ── SECTIONS ── */
+.section{max-width:1080px;margin:auto;padding:84px 28px}
+.section+.section{padding-top:0}
+.head{text-align:center;max-width:760px;margin:0 auto 44px}
+.label{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-ink);background:var(--teal-pale);padding:6px 14px;border-radius:100px;margin-bottom:16px}
+h2{font-size:clamp(27px,3.8vw,40px);line-height:1.15;font-weight:800;letter-spacing:-.02em}
+.sub{font-size:16px;color:var(--muted);margin-top:14px;line-height:1.7}
+
+/* checkmark */
+.ck{width:20px;height:20px;flex-shrink:0;display:inline-grid;place-items:center;border-radius:50%;background:var(--teal-pale)}
+.ck svg{width:12px;height:12px;stroke:var(--teal-dark);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+/* ── WRONG / RIGHT ── */
+.wrongright{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.wrong,.right{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
+.wrong{border-left:4px solid var(--coral)}
+.right{border-left:4px solid var(--teal)}
+.wrlabel{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
+.wrong .wrlabel{color:var(--coral)}.right .wrlabel{color:var(--teal-dark)}
+.wrongright h3{font-size:20px;font-weight:700;margin-bottom:14px;letter-spacing:-.01em}
+.wrongright ul{list-style:none}
+.wrongright li{font-size:14px;color:var(--text);padding:9px 0;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:flex-start;line-height:1.55}
+.wrongright li:last-child{border-bottom:none}
+.wrong li::before{content:'✕';color:var(--coral);font-weight:700;flex-shrink:0}
+.right li{align-items:center}
+
+/* ── PILLARS ── */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pillar{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:28px;box-shadow:var(--shadow);transition:transform .15s,box-shadow .15s}
+.pillar:hover{transform:translateY(-3px);box-shadow:0 4px 8px rgba(16,24,40,.06),0 12px 28px rgba(16,24,40,.09)}
+.picon{width:44px;height:44px;border-radius:11px;background:var(--teal-pale);display:grid;place-items:center;font-size:15px;font-weight:800;color:var(--teal-dark);margin-bottom:18px}
+.pn{font-size:10.5px;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+.pillar h3{font-size:18px;font-weight:700;margin:8px 0 10px;letter-spacing:-.01em;line-height:1.3}
+.pillar p{font-size:13.5px;color:var(--muted);line-height:1.65}
+.out{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:12px;font-weight:700;color:var(--teal-dark);display:flex;align-items:center;gap:8px}
+
+/* ── DARK / ZIP MOAT ── */
+.dark{background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 100%);color:#fff}
+.darkin{max-width:1080px;margin:auto;padding:84px 28px}
+.dark .head{color:#fff}
+.dark .label{color:var(--teal);background:rgba(46,181,159,.12)}
+.dark .sub{color:var(--on-navy)}
+.zipflow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:10px}
+.zip{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:24px}
+.zip b{display:block;font-size:30px;font-weight:800;color:var(--teal);margin-bottom:10px}
+.zip span{font-size:13px;color:var(--on-navy);line-height:1.6}
+.sequence{margin-top:34px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;font-size:12px;font-weight:700}
+.node{border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:9px 14px;color:#fff;background:rgba(255,255,255,.04);letter-spacing:.06em}
+.arrow{color:var(--teal);font-size:15px}
+
+/* ── CALCULATOR ── */
+.calcwrap{display:grid;grid-template-columns:.92fr 1.08fr;gap:16px}
+.calcinputs,.calcresults{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
+.calcinputs h3,.calcresults h3{font-size:20px;font-weight:700;margin-bottom:20px;letter-spacing:-.01em}
+.field{margin-bottom:18px}
+.fieldtop{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px}
+.field label{font-size:13px;font-weight:600;color:var(--text)}
+.field output{font-size:13px;font-weight:700;color:var(--teal-dark);background:var(--teal-pale);padding:2px 10px;border-radius:6px}
+input[type=range]{width:100%;accent-color:var(--teal)}
+.result{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:13px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--text)}
+.result strong{font-size:19px;font-weight:800;color:var(--ink);white-space:nowrap}
+.total{background:linear-gradient(120deg,var(--teal) 0%,#3d9e6e 100%);color:#fff;border-radius:10px;margin-top:20px;padding:24px}
+.total span{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+.total strong{display:block;font-size:44px;font-weight:800;margin:6px 0 4px;letter-spacing:-.02em}
+.total p{font-size:12px;color:rgba(255,255,255,.85);line-height:1.5}
+.disclosure{margin-top:16px;font-size:12px;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:14px 16px;line-height:1.6}
+.dashboard{margin-top:18px;border:1px solid var(--line);border-radius:var(--r);background:var(--card);overflow:hidden;box-shadow:var(--shadow)}
+.dashrow{display:grid;grid-template-columns:1.3fr repeat(4,1fr);border-bottom:1px solid var(--line)}
+.dashrow:last-child{border-bottom:none}
+.dashrow>div{padding:13px 16px;font-size:13px;color:var(--text)}
+.dashrow>div+div{border-left:1px solid var(--line)}
+.dashhead{background:var(--bg)}
+.dashhead>div{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* ── PROOF ── */
+.sample{display:grid;grid-template-columns:.8fr 1.2fr;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-bottom:14px;box-shadow:var(--shadow)}
+.samplebefore{background:var(--coral-pale);padding:26px;border-right:1px solid var(--line)}
+.sampleafter{padding:26px}
+.sampletag{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.samplebefore .sampletag{color:var(--coral)}
+.sampleafter .sampletag{color:var(--teal-dark)}
+.sample h3{font-size:18px;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
+.sample p{font-size:14px;color:var(--muted);line-height:1.65}
+
+/* ── METHOD ── */
+.evidence{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+.evidence img{width:100%;border:1px solid var(--line);border-radius:var(--r);background:#fff;cursor:zoom-in;box-shadow:var(--shadow)}
+.evcards{display:grid;gap:12px}
+.ev{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+.ev b{font-size:16px;font-weight:700;display:block;margin-bottom:6px;letter-spacing:-.01em}
+.ev p{font-size:13.5px;color:var(--muted);line-height:1.6}
+
+/* ── ROADMAP ── */
+.road{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.phase{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--shadow)}
+.phase>span{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--teal-ink);background:var(--teal-pale);padding:5px 12px;border-radius:100px}
+.phase h3{font-size:19px;font-weight:700;margin:14px 0 10px;letter-spacing:-.01em}
+.phase ul{list-style:none}
+.phase li{font-size:13.5px;color:var(--text);padding:8px 0;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:center}
+.phase li:last-child{border-bottom:none}
+.guardrails{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
+.guard{background:var(--coral-pale);border:1px solid #f3d5cd;border-radius:10px;padding:18px;font-size:13px;color:var(--text);line-height:1.5}
+.guard b{display:block;color:var(--coral);font-size:10.5px;font-weight:800;letter-spacing:.1em;margin-bottom:6px}
+
+/* ── URGENCY BAND ── */
+.urgency{background:var(--orange);color:#fff;text-align:center;border-radius:var(--r);padding:34px 28px;margin-top:44px}
+.urgency h3{font-size:21px;font-weight:800;margin-bottom:8px;letter-spacing:-.01em}
+.urgency p{font-size:14.5px;color:rgba(255,255,255,.92);max-width:560px;margin:0 auto}
+.urgency p strong{color:#fff}
+
+/* ── CTA ── */
+.cta{background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;text-align:center;padding:84px 28px}
+.cta .label{color:var(--teal);background:rgba(46,181,159,.12)}
+.cta h2{max-width:720px;margin:auto;color:#fff}
+.cta>p{color:var(--on-navy);max-width:620px;margin:18px auto 0;font-size:16px;line-height:1.7}
+.auditform{max-width:720px;margin:36px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:12px;text-align:left}
+.auditform input{width:100%;padding:14px 16px;border:1px solid rgba(255,255,255,.2);border-radius:10px;background:rgba(255,255,255,.06);color:#fff;font-size:14px;outline:none;transition:border-color .15s}
+.auditform input:focus{border-color:var(--teal)}
+.auditform input::placeholder{color:var(--on-navy-dim)}
+.auditform button{grid-column:1/-1}
+.formnote{grid-column:1/-1;text-align:center;font-size:12px;color:var(--on-navy-dim)}
+
+/* ── FOOTER ── */
+.footer{background:var(--navy3);color:var(--on-navy-dim);padding:34px 28px;text-align:center}
+.footer b{display:block;font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--on-navy);margin-bottom:6px}
+.footer span{font-size:12.5px;display:block}
+.footer a{color:var(--teal);text-decoration:none}
+
+/* ── MODAL ── */
+.modal{position:fixed;z-index:500;inset:0;background:rgba(10,15,20,.9);display:none;place-items:center;padding:24px}
+.modal.open{display:grid}
+.modal img{max-width:95vw;max-height:90vh;border-radius:10px}
+.close{position:absolute;right:20px;top:20px;background:#fff;border:0;border-radius:8px;padding:10px 14px;font-size:12px;font-weight:700;cursor:pointer}
+
+@media(max-width:880px){
+  .heroin,.calcwrap,.evidence{grid-template-columns:1fr}
+  .pillars{grid-template-columns:1fr 1fr}
+  .zipflow,.road{grid-template-columns:1fr 1fr}
+  .heroaside{max-width:640px}
+  .navlinks{display:none}.menu{display:block}
+  .navlinks.open{display:flex;position:absolute;left:0;right:0;top:68px;background:var(--navy);padding:20px 28px;flex-direction:column;align-items:flex-start;gap:18px;border-bottom:1px solid rgba(255,255,255,.1)}
+}
+@media(max-width:560px){
+  .heroin{padding:64px 20px 52px}
+  .section,.darkin,.cta{padding:60px 20px}
+  .pillars,.zipflow,.road,.wrongright,.auditform{grid-template-columns:1fr}
+  .sample{grid-template-columns:1fr}
+  .samplebefore{border-right:0;border-bottom:1px solid var(--line)}
+  .guardrails{grid-template-columns:1fr 1fr}
+  .dashrow{grid-template-columns:1.2fr 1fr}
+  .dashrow>div:nth-child(3),.dashrow>div:nth-child(4),.dashrow>div:nth-child(5){display:none}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<nav class="nav">
+  <div class="navin">
+    <a class="logo" href="#top"><span class="mark">M</span><span class="logocopy"><strong>MBRACE Insight</strong><span>Independent HVAC Growth</span></span></a>
+    <button class="menu" id="menu" aria-expanded="false">MENU</button>
+    <div class="navlinks" id="navlinks"><a href="#system">System</a><a href="#calculator">Savings Model</a><a href="#proof">Proof</a><a href="#method">Method</a><a class="navcta" href="#audit">Get Your Audit</a></div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="heroin">
+    <div>
+      <div class="eyebrow">For Independent DMV HVAC Owners</div>
+      <h1>Stop renting visibility.<br><em>Own your local market.</em></h1>
+      <p class="lead">You do not need to outspend a private-equity rollup. You need <strong>deeper neighborhood proof, better answers, cleaner attribution</strong> — and a digital presence that makes your expertise impossible to miss.</p>
+      <div class="actions"><a class="btn primary" href="#calculator">Model My Opportunity</a><a class="btn ghost" href="#proof">See What We Build</a></div>
+    </div>
+    <aside class="heroaside">
+      <div class="asidehead">The Independent Advantage</div>
+      <div class="heroitem"><b>04</b><span>ZIP codes owned deeply can outperform a metro-wide message diluted across dozens.</span></div>
+      <div class="heroitem"><b>05</b><span>Metrics reveal which channels create revenue — not merely calls, clicks, or impressions.</span></div>
+      <div class="heroitem"><b>90</b><span>Days to establish the content, reputation, and measurement rhythm.</span></div>
+    </aside>
+  </div>
+</header>
+
+<div class="truth">Visibility is not "posting more." It is making real expertise findable, credible, and measurable.</div>
+
+<main>
+<section class="section">
+  <div class="head"><span class="label">The Strategic Shift</span><h2>Paid leads are useful. Dependence is expensive.</h2><p class="sub">Google can remain one channel. It should not own the relationship between your company and every homeowner in your service area.</p></div>
+  <div class="wrongright">
+    <div class="wrong"><div class="wrlabel">Rented Visibility</div><h3>Pay again for every opportunity.</h3><ul><li>Buy access to the same lead as larger operators</li><li>Measure cost per call but not cost per closed job</li><li>Use generic service pages that answer nothing</li><li>Disappear the moment the campaign pauses</li></ul></div>
+    <div class="right"><div class="wrlabel">Owned Visibility</div><h3>Build proof that compounds.</h3><ul>
+      <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Own specific service-and-location questions</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Connect every lead source to closed revenue</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Publish real jobs, useful answers, and clear standards</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Turn reviews and expertise into durable assets</li>
+    </ul></div>
+  </div>
+</section>
+
+<section class="section" id="system">
+  <div class="head"><span class="label">The System</span><h2>Six systems that turn a local reputation into discoverable demand.</h2><p class="sub">No single tactic controls Google, Maps, or AI answers. The opportunity is to improve every controllable evidence signal around the business.</p></div>
+  <div class="pillars">
+    <article class="pillar"><div class="picon">01</div><div class="pn">Local Entity</div><h3>Accurate GBP + service footprint</h3><p>Real hours, correct categories, complete services, aligned locations, useful updates, and consistent business information.</p><div class="out"><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Profile operating system</div></article>
+    <article class="pillar"><div class="picon">02</div><div class="pn">Authority</div><h3>Evergreen homeowner education</h3><p>Specific answers about diagnostics, costs, housing stock, maintenance, rebates, and when not to replace equipment.</p><div class="out"><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Authority engine</div></article>
+    <article class="pillar"><div class="picon">03</div><div class="pn">Reputation</div><h3>Reviews become structured proof</h3><p>Fast requests, thoughtful responses, escalation rules, and real stories that reinforce what the company wants to be known for.</p><div class="out"><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Trust loop</div></article>
+    <article class="pillar"><div class="picon">04</div><div class="pn">AI Discovery</div><h3>Crawlable facts and attributable answers</h3><p>Clear entities, source links, expert authorship, structured service information, and original field evidence that machines can interpret.</p><div class="out"><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Evidence architecture</div></article>
+    <article class="pillar"><div class="picon">05</div><div class="pn">Conversion</div><h3>Pages built for decisions</h3><p>Answer price, fit, process, risk, and qualification questions before the estimate instead of hiding behind "call for details."</p><div class="out"><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Buyer pages</div></article>
+    <article class="pillar"><div class="picon">06</div><div class="pn">Attribution</div><h3>Know what creates closed revenue</h3><p>Track source, qualified leads, close rate, customer acquisition cost, lifetime value, and revenue by channel.</p><div class="out"><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Monday dashboard</div></article>
+  </div>
+</section>
+</main>
+
+<section class="dark">
+  <div class="darkin">
+    <div class="head"><span class="label">The Local Moat</span><h2>Go four ZIP codes deep before going forty miles wide.</h2><p class="sub">Large operators optimize for coverage and call volume. An independent can win through density: real jobs, real neighborhoods, local relationships, faster follow-up, and recognizable expertise.</p></div>
+    <div class="zipflow">
+      <div class="zip"><b>01</b><span>Choose the four ZIP codes with the best margin, housing fit, and drive-time economics.</span></div>
+      <div class="zip"><b>02</b><span>Document job patterns, home eras, fuel types, and homeowner questions in each.</span></div>
+      <div class="zip"><b>03</b><span>Distribute proof through GBP, neighborhood channels, email, reviews, and local pages.</span></div>
+      <div class="zip"><b>04</b><span>Track qualified calls, close rate, drive time, average ticket, and referral concentration.</span></div>
+    </div>
+    <div class="sequence"><span class="node">FIELD WORK</span><span class="arrow">→</span><span class="node">ORIGINAL PROOF</span><span class="arrow">→</span><span class="node">LOCAL VISIBILITY</span><span class="arrow">→</span><span class="node">DIRECT DEMAND</span></div>
+  </div>
+</section>
+
+<main>
+<section class="section" id="calculator" style="padding-top:84px">
+  <div class="head"><span class="label">Opportunity Calculator</span><h2>Model the money using your numbers — not a marketing promise.</h2><p class="sub">Adjust the inputs. The model separates potentially reducible paid-media spend from gross revenue associated with qualified opportunities that stronger follow-up and owned visibility may recover.</p></div>
+  <div class="calcwrap">
+    <div class="calcinputs">
+      <h3>Your current inputs</h3>
+      <div class="field"><div class="fieldtop"><label for="spend">Monthly paid-lead spend</label><output id="spendOut">$20,000</output></div><input id="spend" type="range" min="1000" max="100000" step="1000" value="20000"></div>
+      <div class="field"><div class="fieldtop"><label for="waste">Potentially reducible / reallocatable</label><output id="wasteOut">20%</output></div><input id="waste" type="range" min="0" max="50" step="1" value="20"></div>
+      <div class="field"><div class="fieldtop"><label for="missed">Qualified opportunities missed monthly</label><output id="missedOut">10</output></div><input id="missed" type="range" min="0" max="100" step="1" value="10"></div>
+      <div class="field"><div class="fieldtop"><label for="close">Close rate on recovered opportunities</label><output id="closeOut">25%</output></div><input id="close" type="range" min="5" max="70" step="1" value="25"></div>
+      <div class="field"><div class="fieldtop"><label for="ticket">Average closed-job revenue</label><output id="ticketOut">$8,000</output></div><input id="ticket" type="range" min="300" max="30000" step="100" value="8000"></div>
+    </div>
+    <div class="calcresults">
+      <h3>Illustrative annual opportunity</h3>
+      <div class="result"><span>Current annual paid-lead spend</span><strong id="annualSpend">$240,000</strong></div>
+      <div class="result"><span>Potential spend reduction / reallocation</span><strong id="saved">$48,000</strong></div>
+      <div class="result"><span>Recovered closed jobs per year</span><strong id="jobs">30</strong></div>
+      <div class="result"><span>Gross revenue associated with recovered jobs</span><strong id="revenue">$240,000</strong></div>
+      <div class="total"><span>Combined addressable annual value</span><strong id="total">$288,000</strong><p>Spend reduction/reallocation plus illustrative gross job revenue. This is not profit and is not guaranteed.</p></div>
+      <div class="disclosure">The model does not claim that MBRACE will eliminate paid media or create every modeled job. Actual results depend on baseline lead quality, capacity, response time, market conditions, implementation, pricing, and close rate. Use contribution margin — not gross revenue — for investment decisions.</div>
+    </div>
+  </div>
+  <div class="dashboard">
+    <div class="dashrow dashhead"><div>Source</div><div>Spend</div><div>Qualified leads</div><div>Close rate</div><div>Closed revenue</div></div>
+    <div class="dashrow"><div>Google LSA</div><div>Your data</div><div>Your data</div><div>Your data</div><div>Your data</div></div>
+    <div class="dashrow"><div>Google Search</div><div>Your data</div><div>Your data</div><div>Your data</div><div>Your data</div></div>
+    <div class="dashrow"><div>Referrals</div><div>Your data</div><div>Your data</div><div>Your data</div><div>Your data</div></div>
+    <div class="dashrow"><div>Neighborhood / organic</div><div>Your data</div><div>Your data</div><div>Your data</div><div>Your data</div></div>
+  </div>
+</section>
+
+<section class="section" id="proof">
+  <div class="head"><span class="label">What We Build</span><h2>Value before the sales call.</h2><p class="sub">Every prospect can see the standard of thinking through a real, company-specific sample — never a generic deck with the logo swapped.</p></div>
+  <div class="sample"><div class="samplebefore"><div class="sampletag">Before</div><h3>Generic positioning</h3><p>"Family owned. Quality service. Financing available. Call today."</p></div><div class="sampleafter"><div class="sampletag">After</div><h3>Specific evidence</h3><p>Company history translated into a homeowner benefit, local housing knowledge, verified service standards, transparent maintenance scope, current program links, and a clear reason to call this operator — not merely any operator.</p></div></div>
+  <div class="sample"><div class="samplebefore"><div class="sampletag">Before</div><h3>Generic content</h3><p>"Change your filter this spring."</p></div><div class="sampleafter"><div class="sampletag">After</div><h3>Original local authority</h3><p>"Why 1960s Silver Spring split-levels develop second-floor airflow problems — and what should be measured before anyone recommends larger equipment."</p></div></div>
+  <div class="sample"><div class="samplebefore"><div class="sampletag">Before</div><h3>Unanswered criticism</h3><p>Silence leaves the customer's account as the only public version of events.</p></div><div class="sampleafter"><div class="sampletag">After</div><h3>Controlled trust repair</h3><p>Verify the service record, acknowledge the specific concern, explain the authorized escalation path, and move resolution offline without defensiveness or invented promises.</p></div></div>
+</section>
+
+<section class="section" id="method">
+  <div class="head"><span class="label">Technical Differentiation</span><h2>Marketing is strongest when the operational standard is worth marketing.</h2><p class="sub">The Certified Sequence Standard turns "quality installation" from an empty phrase into a visible homeowner protection framework: measure, seal, size, install, and verify.</p></div>
+  <div class="evidence">
+    <img id="sequenceImage" src="assets/certified-sequence-standard.png" alt="Certified Sequence Standard showing six gates for measurement, envelope work, sizing, installation, and documentation" onerror="this.style.display='none';document.getElementById('expandImage').style.display='none'">
+    <div class="evcards">
+      <div class="ev"><b>No measurement → no install</b><p>A memorable standard differentiates a precision contractor from rule-of-thumb equipment replacement.</p></div>
+      <div class="ev"><b>Original frameworks create evidence</b><p>Real methodology, documented sources, and field examples are more credible to homeowners — and more useful to search and AI systems — than generic claims.</p></div>
+      <div class="ev"><b>Any qualified contractor can adopt it</b><p>The standard is not size-gated. It is behavior-gated: measure, document, model, and verify.</p></div>
+      <button class="btn primary" id="expandImage">View the Full Standard</button>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="head"><span class="label">The First 90 Days</span><h2>Audit. Build. Publish. Measure. Compound.</h2><p class="sub">The objective is not instant ranking. It is a repeatable evidence and attribution system that improves what the company controls.</p></div>
+  <div class="road">
+    <article class="phase"><span>DAYS 1–30</span><h3>Truth + control</h3><ul>
+      <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Entity and GBP audit</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Review response priorities</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Five-metric baseline</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Service-area economics</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>First buyer page</li>
+    </ul></article>
+    <article class="phase"><span>DAYS 31–60</span><h3>Authority + proof</h3><ul>
+      <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Local content clusters</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Real-job capture workflow</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Technical framework pages</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Review request system</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Estimate follow-up sequence</li>
+    </ul></article>
+    <article class="phase"><span>DAYS 61–90</span><h3>Attribution + scale</h3><ul>
+      <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Revenue by source</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Expand winning topics</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Reduce weak-channel waste</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Neighborhood distribution</li>
+      <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Quarterly operating plan</li>
+    </ul></article>
+  </div>
+  <div class="guardrails">
+    <div class="guard"><b>WE DO NOT</b>List fake 24/7 hours</div>
+    <div class="guard"><b>WE DO NOT</b>Invent jobs or reviews</div>
+    <div class="guard"><b>WE DO NOT</b>Promise rankings</div>
+    <div class="guard"><b>WE DO NOT</b>Publish generic AI filler</div>
+  </div>
+  <div class="urgency">
+    <h3>The HVAC contractors that optimize now will own visibility for the next decade.</h3>
+    <p>Google's AI Overviews are expanding fast — and the window to become the cited local authority is closing. <strong>Every day you wait, someone else's proof is compounding.</strong></p>
+  </div>
+</section>
+</main>
+
+<section class="cta" id="audit">
+  <span class="label">Your Next Step</span>
+  <h2>See what your company has already earned — but is not yet converting.</h2>
+  <p>Request a local visibility audit. You will receive specific gaps, a modeled opportunity using your numbers, and at least one finished asset your company can use.</p>
+  <div style="margin-top:32px"><a class="btn primary" href="mailto:hello@mbraceinsight.com?subject=Local%20Visibility%20Audit%20Request">Email hello@mbraceinsight.com</a></div>
+</section>
+
+<footer class="footer">
+  <b>MBRACE INSIGHT LLC · GAITHERSBURG, MARYLAND</b>
+  <span>Visibility · Authority · Attribution · Independent HVAC</span>
+  <span style="margin-top:6px">Contact: <a href="mailto:hello@mbraceinsight.com">hello@mbraceinsight.com</a></span>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Certified Sequence Standard full-size image"><button class="close" id="closeModal">CLOSE</button><img src="assets/certified-sequence-standard.png" alt="Certified Sequence Standard full-size view"></div>
+
+<script>
+const money=n=>new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0}).format(n);
+const ids=["spend","waste","missed","close","ticket"];
+function calculate(){
+  const spend=+document.getElementById("spend").value,waste=+document.getElementById("waste").value,missed=+document.getElementById("missed").value,close=+document.getElementById("close").value,ticket=+document.getElementById("ticket").value;
+  document.getElementById("spendOut").textContent=money(spend);document.getElementById("wasteOut").textContent=waste+"%";document.getElementById("missedOut").textContent=missed;document.getElementById("closeOut").textContent=close+"%";document.getElementById("ticketOut").textContent=money(ticket);
+  const annual=spend*12,saved=annual*waste/100,jobs=missed*12*close/100,revenue=jobs*ticket;
+  document.getElementById("annualSpend").textContent=money(annual);document.getElementById("saved").textContent=money(saved);document.getElementById("jobs").textContent=jobs.toFixed(jobs%1?1:0);document.getElementById("revenue").textContent=money(revenue);document.getElementById("total").textContent=money(saved+revenue);
+}
+ids.forEach(id=>document.getElementById(id).addEventListener("input",calculate));calculate();
+const menu=document.getElementById("menu"),links=document.getElementById("navlinks");
+menu.addEventListener("click",()=>{const open=links.classList.toggle("open");menu.setAttribute("aria-expanded",open);menu.textContent=open?"CLOSE":"MENU"});
+links.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{links.classList.remove("open");menu.setAttribute("aria-expanded","false");menu.textContent="MENU"}));
+window.addEventListener("scroll",()=>{const d=document.documentElement,m=d.scrollHeight-d.clientHeight;document.getElementById("progress").style.width=(m?d.scrollTop/m*100:0)+"%"});
+const modal=document.getElementById("modal");
+document.getElementById("expandImage").addEventListener("click",()=>modal.classList.add("open"));
+document.getElementById("sequenceImage").addEventListener("click",()=>modal.classList.add("open"));
+document.getElementById("closeModal").addEventListener("click",()=>modal.classList.remove("open"));
+modal.addEventListener("click",e=>{if(e.target===modal)modal.classList.remove("open")});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")modal.classList.remove("open")});
+</script>
+</body>
+</html>

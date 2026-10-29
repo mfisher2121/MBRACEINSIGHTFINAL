@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>After-Hours Call Capture Playbook – MBRACE Insight</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/playbook.css">
+</head>
+<body>
+<div class="printbar"><button id="print" type="button">Save as PDF</button></div>
+<article class="doc">
+  <div class="brand">MBRACE Insight</div>
+  <h1>Capturing After-Hours Emergency Calls</h1>
+  <div class="prepared" data-merge="prepared">MBRACE Insight playbook</div>
+
+  <p class="lede">It's 9:47pm in January. A homeowner's furnace just quit. They search on their phone and start calling HVAC companies. The first company that answers usually gets the job.</p>
+  <p>This playbook is about making sure <span data-merge="company">your company</span> answers, even when nobody is in the office, without burning out your on-call tech.</p>
+
+  <h2>Start with your own numbers</h2>
+  <p>Don't trust anyone's industry average for this, including ours. Pull one month of your phone logs and fill this in:</p>
+  <table class="worksheet">
+    <tr><td>Calls that came in after hours (evenings, nights, weekends)</td><td></td></tr>
+    <tr><td>How many went to voicemail</td><td></td></tr>
+    <tr><td>How many of those callers never called back or booked</td><td></td></tr>
+    <tr><td>Your close rate on emergency calls you do answer</td><td></td></tr>
+    <tr><td>Your average emergency job revenue</td><td></td></tr>
+  </table>
+  <p>Then estimate what you're missing each month:</p>
+  <div class="formula">missed calls × close rate × average job = revenue at risk</div>
+  <div class="box example"><b class="tag">Illustrative example, not a benchmark</b>8 missed calls a month × 50% close rate × $1,200 average job ≈ $4,800 a month in revenue at risk. That's revenue, not profit. Use your own numbers.</div>
+
+  <h2>Your options</h2>
+  <table>
+    <tr><th>Option</th><th>What it costs you</th><th>The catch</th></tr>
+    <tr><td>Voicemail after hours</td><td>Nothing up front</td><td>Most emergency callers move on to the next company.</td></tr>
+    <tr><td>Owner or tech carries the phone</td><td>Sleep and morale</td><td>Hard to sustain; good techs leave over it.</td></tr>
+    <tr><td>Traditional answering service</td><td>A monthly fee; get quotes</td><td>Usually takes a message and promises a callback.</td></tr>
+    <tr><td>AI call agent</td><td>A monthly fee plus setup</td><td>Needs a good script, clear safety rules and testing before it goes live.</td></tr>
+  </table>
+
+  <h2>What a good AI call sounds like</h2>
+  <div class="script">
+    <p><strong>AI:</strong> "Thanks for calling <span data-merge="company">[Company]</span>. I'm the after-hours assistant. I'm an automated system, and I'll get your details to our on-call technician right away. What's going on with your system?"</p>
+    <p><strong>Homeowner:</strong> "Our furnace stopped working about an hour ago. It made a noise and shut off."</p>
+    <p><strong>AI:</strong> "I'm sorry. First, a safety question: do you smell gas, or is a carbon monoxide alarm going off?"</p>
+    <p><strong>Homeowner:</strong> "No."</p>
+    <p><strong>AI:</strong> "Okay. Is there any heat at all, and is anyone in the home especially vulnerable to cold, like an infant, an older adult or someone who's ill?"</p>
+    <p><strong>AI:</strong> "Thanks. I'm sending your details to our on-call technician now. They'll call you back to confirm timing. Until then, keep doors to unused rooms closed and dress warmly. Please don't use an oven, stove or grill to heat the house."</p>
+  </div>
+  <p>The tech gets a text with the name, number, address, the problem, when it started, the safety answers, and an urgency level.</p>
+
+  <h2>Safety rules the AI must follow</h2>
+  <div class="box warn"><b class="tag">Non-negotiable</b>
+    <ul>
+      <li><strong>Gas smell or CO alarm:</strong> tell the caller to leave the home now and call 911 or the gas company from outside. Then notify the on-call tech. Never troubleshoot on these calls.</li>
+      <li><strong>Never suggest an oven, stove, grill or generator for heat.</strong> These cause carbon monoxide poisoning.</li>
+      <li><strong>No repair instructions</strong> beyond checking the thermostat setting and whether a breaker is visibly tripped.</li>
+      <li><strong>No promised arrival times</strong> unless the dispatch system confirms one. "The technician will call you to confirm timing" is honest.</li>
+      <li><strong>No prices or diagnoses.</strong> Those come from the technician.</li>
+    </ul>
+  </div>
+
+  <h2>Tell callers it's an assistant</h2>
+  <p>Say so in the first sentence of the call. It's the honest choice, homeowners respond well when the system clearly works, and it keeps the company clear of rules on automated calls as they change. On your website: "After hours, an automated assistant answers so no emergency goes to voicemail. A technician calls you back."</p>
+
+  <h2>You don't need a tech awake at 2am</h2>
+  <p>You need the call captured. For calls that can wait, the assistant can offer the first morning slot:</p>
+  <div class="script"><p>"Our technicians aren't out at this hour, but I can put you first on tomorrow's schedule and have someone call you at 7am to confirm. Does that work?"</p></div>
+  <p>Set the rules with your team: which problems get a tech tonight, which wait for morning, and who backs up the primary on-call tech.</p>
+
+  <h2>What you need to set up</h2>
+  <ol>
+    <li><strong>Phone routing:</strong> your main line forwards to the assistant after hours, or a dedicated after-hours line.</li>
+    <li><strong>An on-call protocol:</strong> who gets the texts, how fast they respond, and the backup.</li>
+    <li><strong>A script and knowledge base:</strong> your service area, the problems you dispatch for, the safety rules above, and what you never say.</li>
+    <li><strong>Testing:</strong> 20+ test calls covering emergencies, gas smells, wrong numbers and angry callers before going live.</li>
+  </ol>
+
+  <h2>Action steps</h2>
+  <ol>
+    <li>Fill in the worksheet from one month of phone logs.</li>
+    <li>If the revenue at risk is meaningful, write the dispatch rules with your team.</li>
+    <li>Set up the assistant, run the test calls, then go live.</li>
+    <li>After 30 days, compare captured calls and booked jobs against the baseline.</li>
+  </ol>
+
+  <div class="cta"><strong>Want this set up and maintained for you?</strong> MBRACE Insight builds, tests and monitors after-hours call capture. Current plans: <a href="https://mbraceinsight.com/#pricing">mbraceinsight.com/#pricing</a></div>
+  <div class="foot">MBRACE Insight LLC · Gaithersburg, Maryland. Examples are illustrative, not predictions for any company. Results depend on your call volume, close rate and follow-through.</div>
+</article>
+<script src="/js/playbook.js"></script>
+</body>
+</html>

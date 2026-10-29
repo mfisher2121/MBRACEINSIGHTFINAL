@@ -1,0 +1,218 @@
+{
+  "name": "MBRACE Form Intake — Audit + Market Report",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "mbrace-lead",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "wh-lead",
+      "name": "Webhook: Site Lead",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [-720, 280],
+      "notes": "Use this production URL as N8N_WEBHOOK_AUDIT and N8N_WEBHOOK_REPORT in Netlify (same URL is fine). The Switch node routes by form-name."
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.item.json.body || $input.item.json;\nconst formName = body['form-name'] || body.form_name || 'gbp-audit';\nconst email = String(body.email || '').trim().toLowerCase();\nconst gbp = String(body.gbp_url || '').trim();\nconst website = String(body.website || '').trim();\nconst company = String(body.company || '').trim();\nconst zip = String(body.zip || '').trim();\n\nconst emailOk = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email);\nconst gbpOk = !gbp || /google\\.(com|co\\.)|maps\\.app\\.goo\\.gl|g\\.page|business\\.google/.test(gbp);\nconst websiteOk = !website || /^https?:\\/\\//i.test(website);\n\nreturn {\n  json: {\n    ...body,\n    form_name: formName,\n    email,\n    gbp_url: gbp,\n    website,\n    company,\n    zip,\n    received_at: body.received_at || new Date().toISOString(),\n    valid: Boolean(emailOk && gbpOk && websiteOk && (formName === 'market-report' ? company && zip && website : gbp)),\n    validation_errors: [\n      !emailOk ? 'invalid_email' : null,\n      formName === 'gbp-audit' && !gbp ? 'missing_gbp_url' : null,\n      formName === 'gbp-audit' && gbp && !gbpOk ? 'gbp_url_not_google' : null,\n      formName === 'market-report' && !company ? 'missing_company' : null,\n      formName === 'market-report' && !zip ? 'missing_zip' : null,\n      formName === 'market-report' && !websiteOk ? 'invalid_website' : null\n    ].filter(Boolean)\n  }\n};"
+      },
+      "id": "normalize",
+      "name": "Normalize + Validate",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-500, 280]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{$json.valid}}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "if-valid",
+      "name": "Valid lead?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [-280, 280]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "string": [
+                  {
+                    "value1": "={{$json.form_name}}",
+                    "value2": "market-report"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "report"
+            }
+          ]
+        },
+        "fallbackOutput": "extra",
+        "options": {
+          "fallbackOutputName": "audit"
+        }
+      },
+      "id": "switch-form",
+      "name": "Switch: Audit vs Report",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [-60, 200]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "sheetId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "YOUR_GOOGLE_SHEET_ID"
+        },
+        "range": "Leads!A:L",
+        "options": {}
+      },
+      "id": "sheet-audit",
+      "name": "Append Audit Lead",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [180, 120],
+      "notes": "Columns: received_at, form_name, email, company, gbp_url, website, zip, primary_service, status, notes"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "sheetId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "YOUR_GOOGLE_SHEET_ID"
+        },
+        "range": "Leads!A:L",
+        "options": {}
+      },
+      "id": "sheet-report",
+      "name": "Append Report Lead",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [180, 300]
+    },
+    {
+      "parameters": {
+        "fromEmail": "hello@mbraceinsight.com",
+        "toEmail": "={{$json.email}}",
+        "subject": "Your 60-second Google Maps audit is in the queue",
+        "emailType": "html",
+        "html": "=<p>Got it — I have your Google Business Profile.</p><p>I'll record a private 60-second video of the gaps costing you HVAC jobs in the DMV and send it here.</p><p>GBP: {{$json.gbp_url}}</p><p>— Max / MBRACE Insight</p>"
+      },
+      "id": "email-audit",
+      "name": "Confirm Audit Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [400, 120]
+    },
+    {
+      "parameters": {
+        "fromEmail": "hello@mbraceinsight.com",
+        "toEmail": "={{$json.email}}",
+        "subject": "Your DMV HVAC Market Intelligence Report is being prepared",
+        "emailType": "html",
+        "html": "=<p>Thanks {{$json.company}} — we're mapping LSA, GBP, review velocity, and competitors around ZIP {{$json.zip}}.</p><p>You'll get the PDF within 24 hours.</p><p>— Max / MBRACE Insight</p>"
+      },
+      "id": "email-report",
+      "name": "Confirm Report Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [400, 300]
+    },
+    {
+      "parameters": {
+        "fromEmail": "hello@mbraceinsight.com",
+        "toEmail": "hello@mbraceinsight.com",
+        "subject": "=New {{$json.form_name}} lead — {{$json.company || $json.email}}",
+        "emailType": "html",
+        "html": "=<p><b>Form:</b> {{$json.form_name}}</p><p><b>Email:</b> {{$json.email}}</p><p><b>Company:</b> {{$json.company}}</p><p><b>GBP:</b> {{$json.gbp_url}}</p><p><b>Website:</b> {{$json.website}}</p><p><b>ZIP:</b> {{$json.zip}}</p><p><b>Service:</b> {{$json.primary_service}}</p><p>Next: record Loom (audit) or fill the Market Intelligence Report template.</p>"
+      },
+      "id": "email-max",
+      "name": "Notify Max",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [620, 200]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: true, queued: true, form: $json.form_name }) }}"
+      },
+      "id": "respond-ok",
+      "name": "Respond 200",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [840, 200]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "options": {
+          "responseCode": 400
+        },
+        "responseBody": "={{ JSON.stringify({ ok: false, errors: $json.validation_errors }) }}"
+      },
+      "id": "respond-bad",
+      "name": "Respond 400",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [-60, 420]
+    }
+  ],
+  "connections": {
+    "Webhook: Site Lead": {
+      "main": [[{ "node": "Normalize + Validate", "type": "main", "index": 0 }]]
+    },
+    "Normalize + Validate": {
+      "main": [[{ "node": "Valid lead?", "type": "main", "index": 0 }]]
+    },
+    "Valid lead?": {
+      "main": [
+        [{ "node": "Switch: Audit vs Report", "type": "main", "index": 0 }],
+        [{ "node": "Respond 400", "type": "main", "index": 0 }]
+      ]
+    },
+    "Switch: Audit vs Report": {
+      "main": [
+        [{ "node": "Append Report Lead", "type": "main", "index": 0 }],
+        [{ "node": "Append Audit Lead", "type": "main", "index": 0 }]
+      ]
+    },
+    "Append Audit Lead": {
+      "main": [[{ "node": "Confirm Audit Email", "type": "main", "index": 0 }]]
+    },
+    "Append Report Lead": {
+      "main": [[{ "node": "Confirm Report Email", "type": "main", "index": 0 }]]
+    },
+    "Confirm Audit Email": {
+      "main": [[{ "node": "Notify Max", "type": "main", "index": 0 }]]
+    },
+    "Confirm Report Email": {
+      "main": [[{ "node": "Notify Max", "type": "main", "index": 0 }]]
+    },
+    "Notify Max": {
+      "main": [[{ "node": "Respond 200", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "description": "Receives audit + market-report form posts from the MBRACE site, validates GBP/email/ZIP, appends to the Leads sheet, emails the prospect, and notifies Max to record the Loom or build the PDF."
+  }
+}

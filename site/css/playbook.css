@@ -1,0 +1,55 @@
+/* Playbook templates: one readable column on screen, clean pages in print (Save as PDF). */
+:root{
+  --navy:#16202f;--teal:#2eb59f;--teal-ink:#177a6c;--teal-pale:#e7f6f2;
+  --orange:#e2683b;--orange-pale:#fdeee6;--coral:#e25c4a;--coral-pale:#fdefec;
+  --bg:#f6f8fa;--card:#fff;--line:#e5eaef;--ink:#1c2733;--text:#414c59;--muted:#68737f;
+  --sans:'Inter',system-ui,-apple-system,sans-serif
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+.doc{max-width:780px;margin:32px auto;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:48px 52px}
+.brand{font:700 11px var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--teal-ink)}
+h1{font:800 32px/1.2 var(--sans);color:var(--ink);margin:10px 0 8px;letter-spacing:-.01em}
+.prepared{font-size:13px;color:var(--muted);padding-bottom:18px;border-bottom:3px solid var(--teal);margin-bottom:26px}
+h2{font:700 20px/1.3 var(--sans);color:var(--teal-ink);margin:32px 0 10px}
+h3{font:700 16px/1.35 var(--sans);color:var(--ink);margin:20px 0 6px}
+p{margin:0 0 12px}
+ul,ol{margin:0 0 14px 22px}
+li{margin:4px 0}
+strong{color:var(--ink)}
+.lede{font-size:17px;color:var(--ink)}
+.box{border:1px solid var(--line);border-left:4px solid var(--teal);background:var(--teal-pale);border-radius:8px;padding:14px 18px;margin:16px 0}
+.box.warn{border-left-color:var(--coral);background:var(--coral-pale)}
+.box.example{border-left-color:var(--orange);background:var(--orange-pale)}
+.box b.tag{display:block;font:700 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px;color:var(--teal-ink)}
+.box.warn b.tag{color:var(--coral)}
+.box.example b.tag{color:var(--orange)}
+.script{background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin:10px 0 14px;font-size:15px}
+.script p:last-child{margin:0}
+.step{border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:12px 0}
+.step .when{font:700 12px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--orange)}
+.step h3{margin-top:4px}
+table{width:100%;border-collapse:collapse;margin:12px 0 18px;font-size:14px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--navy);color:#fff;font-weight:600;font-size:12px;letter-spacing:.04em}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0 18px}
+.tablewrap table{margin:0;min-width:640px}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.formula{font:600 15px ui-monospace,Menlo,monospace;background:#f1f5f9;border-radius:6px;padding:8px 12px;display:inline-block;margin:4px 0 10px}
+.worksheet td:last-child{width:34%;border-bottom:1px dashed #b8c2cc}
+.cta{margin-top:34px;padding:20px 22px;border-radius:10px;background:var(--navy);color:#dbe3ec}
+.cta strong{color:#fff}
+.cta a{color:var(--teal)}
+.foot{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+.printbar{max-width:780px;margin:20px auto 0;display:flex;justify-content:flex-end;gap:10px;padding:0 4px}
+.printbar button{font:600 13px var(--sans);background:var(--teal);color:#fff;border:0;border-radius:8px;padding:9px 14px;cursor:pointer}
+@media(max-width:640px){.doc{margin:0;border-radius:0;border-left:0;border-right:0;padding:28px 18px}h1{font-size:26px}.printbar{padding:0 12px}table{font-size:13px}th,td{padding:7px 6px}}
+@media print{
+  body{background:#fff;font-size:11pt}
+  .doc{margin:0;border:0;padding:0;max-width:none}
+  .printbar{display:none}
+  .step,.box,table,.script{break-inside:avoid}
+  h2{break-after:avoid}
+  a{color:inherit;text-decoration:none}
+  @page{margin:16mm 16mm 18mm}
+}

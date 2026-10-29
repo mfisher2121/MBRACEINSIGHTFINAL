@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The DMV HVAC Visibility Gap — Michael &amp; Son vs. F.H. Furr, and the Openings They Left Behind</title>
+<meta name="description" content="An independent analysis of the two companies that dominate DMV HVAC search visibility — and the specific content gaps that independent HVAC companies can own. Prepared by MBRACE Insight LLC.">
+<meta property="og:title" content="The DMV HVAC Visibility Gap">
+<meta property="og:description" content="Michael & Son and F.H. Furr own the visibility. They left eight doors open. This is the map.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230e0e0c'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23c8972e' font-family='Georgia'>G</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Inconsolata:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0e0e0c;
+  --surface: #161614;
+  --surface-2: #1e1e1b;
+  --surface-3: #252522;
+  --gold: #c8972e;
+  --gold-dim: #8a6820;
+  --gold-pale: rgba(200,151,46,0.08);
+  --cream: #f0ead8;
+  --cream-dim: #9a9080;
+  --red: #c04030;
+  --red-pale: rgba(192,64,48,0.1);
+  --green: #3a7a50;
+  --green-pale: rgba(58,122,80,0.1);
+  --blue: #7ab0d0;
+  --rule: rgba(255,255,255,0.07);
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --mono: 'Inconsolata', monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:var(--sans);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+::selection{background:var(--gold);color:var(--bg)}
+
+.mono-label{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.wrap{max-width:1060px;margin:0 auto;padding:0 40px}
+@media(max-width:680px){.wrap{padding:0 20px}}
+
+/* ─── STICKY NAV ─── */
+.topnav{position:sticky;top:0;z-index:50;background:rgba(14,14,12,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+.topnav-in{max-width:1060px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:56px}
+.topnav-brand{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--cream)}
+.topnav-brand em{color:var(--gold);font-style:normal}
+.topnav-links{display:flex;gap:22px}
+.topnav-links a{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--cream-dim);text-decoration:none;transition:color .15s}
+.topnav-links a:hover{color:var(--gold)}
+@media(max-width:760px){.topnav-links{display:none}}
+
+/* ─── HERO ─── */
+.hero{padding:90px 0 70px;border-bottom:1px solid var(--rule);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-120px;right:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(200,151,46,.10),transparent 65%);pointer-events:none}
+.hero h1{font-family:var(--serif);font-size:clamp(34px,5.4vw,62px);font-weight:400;line-height:1.08;margin:18px 0 22px;max-width:760px}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:16.5px;color:var(--cream-dim);max-width:640px;line-height:1.75}
+.hero-sub strong{color:var(--cream)}
+.hero-meta{display:flex;gap:26px;flex-wrap:wrap;margin-top:34px}
+.hero-meta div{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--cream-dim)}
+.hero-meta div span{color:var(--gold);display:block;font-size:22px;font-family:var(--serif);letter-spacing:0;margin-bottom:2px}
+
+/* ─── SECTION SHELL ─── */
+.sec{padding:72px 0;border-bottom:1px solid var(--rule)}
+.sec h2{font-family:var(--serif);font-size:clamp(24px,3.4vw,38px);font-weight:400;line-height:1.15;margin:14px 0 16px;max-width:720px}
+.sec h2 em{font-style:italic;color:var(--gold)}
+.sec .lede{font-size:15.5px;color:var(--cream-dim);max-width:680px;line-height:1.75;margin-bottom:8px}
+.sec .lede strong{color:var(--cream)}
+
+/* ─── GIANTS ─── */
+.giants{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+@media(max-width:760px){.giants{grid-template-columns:1fr}}
+.giant{background:var(--surface);border:1px solid var(--rule);border-radius:4px;padding:30px 28px;position:relative}
+.giant-tier{font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.giant h3{font-family:var(--serif);font-size:25px;font-weight:400;margin-bottom:4px}
+.giant-sub{font-size:12px;color:var(--cream-dim);margin-bottom:18px;font-family:var(--mono)}
+.giant-facts{list-style:none;margin-bottom:18px}
+.giant-facts li{font-size:13px;color:var(--cream-dim);padding:7px 0 7px 18px;position:relative;border-bottom:1px solid var(--rule)}
+.giant-facts li:last-child{border-bottom:none}
+.giant-facts li::before{content:'▪';position:absolute;left:0;color:var(--gold-dim);font-size:10px;top:10px}
+.giant-facts li strong{color:var(--cream)}
+.giant-verdict{background:var(--surface-2);border-left:2px solid var(--gold);padding:13px 16px;border-radius:0 3px 3px 0;font-size:13px;color:var(--cream);font-style:italic;line-height:1.6}
+
+/* ─── GAP MATRIX ─── */
+.matrix{margin-top:38px;border:1px solid var(--rule);border-radius:4px;overflow:hidden}
+.mx-row{display:grid;grid-template-columns:1.5fr .7fr .7fr 1.6fr;border-bottom:1px solid var(--rule);background:var(--surface)}
+.mx-row:last-child{border-bottom:none}
+.mx-row:nth-child(even){background:var(--surface-2)}
+.mx-hdr{background:var(--surface-3)!important}
+.mx-cell{padding:15px 18px;font-size:13px;color:var(--cream-dim);line-height:1.55;border-left:1px solid var(--rule)}
+.mx-cell:first-child{border-left:none}
+.mx-hdr .mx-cell{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-dim);padding:12px 18px}
+.mx-cat{color:var(--cream);font-weight:600;font-size:13.5px}
+.mx-cat small{display:block;font-weight:400;color:var(--cream-dim);font-size:11.5px;margin-top:3px;line-height:1.5}
+.mx-mark{display:flex;align-items:center;justify-content:flex-start;gap:8px;font-family:var(--mono);font-size:11px}
+.mk{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;font-family:var(--mono);font-weight:600}
+.mk-no{background:var(--red-pale);color:#e07060;border:1px solid rgba(192,64,48,.35)}
+.mk-part{background:rgba(200,151,46,.12);color:var(--gold);border:1px solid var(--gold-dim)}
+.mk-yes{background:var(--green-pale);color:#6ab880;border:1px solid rgba(58,122,80,.35)}
+.mx-open{color:#6ab880;font-size:12.5px}
+.mx-open strong{color:var(--cream);display:block;margin-bottom:2px;font-size:13px}
+@media(max-width:820px){
+  .mx-row{grid-template-columns:1fr}
+  .mx-cell{border-left:none;border-top:1px solid var(--rule)}
+  .mx-cell:first-child{border-top:none}
+  .mx-hdr{display:none}
+  .mx-mark::after{content:attr(data-co);color:var(--cream-dim);font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+}
+
+.legend-row{display:flex;gap:22px;flex-wrap:wrap;margin-top:14px}
+.legend-row div{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:var(--cream-dim)}
+
+/* ─── TWO AUDIENCES ─── */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+@media(max-width:760px){.duo{grid-template-columns:1fr}}
+.duo-card{background:var(--surface);border:1px solid var(--rule);border-radius:4px;padding:28px}
+.duo-card.a{border-top:3px solid var(--gold)}
+.duo-card.b{border-top:3px solid var(--green)}
+.duo-card h3{font-family:var(--serif);font-size:21px;font-weight:400;margin:10px 0 12px}
+.duo-card p{font-size:13.5px;color:var(--cream-dim);line-height:1.7;margin-bottom:12px}
+.duo-card p:last-child{margin-bottom:0}
+.duo-card p strong{color:var(--cream)}
+
+/* ─── OPENINGS ─── */
+.openings{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:38px}
+@media(max-width:760px){.openings{grid-template-columns:1fr}}
+.open-card{background:var(--surface);border:1px solid var(--rule);border-radius:4px;padding:26px;transition:border-color .15s}
+.open-card:hover{border-color:var(--gold-dim)}
+.open-num{font-family:var(--serif);font-size:15px;color:var(--gold);width:36px;height:36px;border:1px solid var(--gold-dim);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.open-card h3{font-family:var(--serif);font-size:19px;font-weight:400;margin-bottom:8px;line-height:1.25}
+.open-card p{font-size:13px;color:var(--cream-dim);line-height:1.65}
+.open-card p strong{color:var(--cream)}
+.open-why{margin-top:12px;padding-top:12px;border-top:1px solid var(--rule);font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:#6ab880;line-height:1.6}
+
+/* ─── VISIBILITY ─── */
+.vis-band{background:var(--surface);border:1px solid var(--rule);border-radius:4px;padding:34px 32px;margin-top:36px}
+.vis-band p{font-size:14.5px;color:var(--cream-dim);line-height:1.8;margin-bottom:14px;max-width:800px}
+.vis-band p:last-child{margin-bottom:0}
+.vis-band p strong{color:var(--cream)}
+.vis-band .big{font-family:var(--serif);font-size:clamp(19px,2.6vw,26px);color:var(--cream);line-height:1.4;margin-bottom:18px}
+.vis-band .big em{color:var(--gold);font-style:italic}
+
+/* ─── CTA ─── */
+.cta{padding:90px 0 100px;text-align:left}
+.cta h2{font-family:var(--serif);font-size:clamp(28px,4vw,46px);font-weight:400;line-height:1.12;margin:16px 0 20px;max-width:700px}
+.cta h2 em{font-style:italic;color:var(--gold)}
+.cta p{font-size:15px;color:var(--cream-dim);max-width:620px;line-height:1.75;margin-bottom:14px}
+.cta p strong{color:var(--cream)}
+.cta-btn{display:inline-block;margin-top:22px;padding:15px 34px;background:var(--gold);color:var(--bg);font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;text-decoration:none;border-radius:3px;transition:background .15s}
+.cta-btn:hover{background:#dcb050}
+.cta-sig{margin-top:34px;font-family:var(--mono);font-size:11.5px;color:var(--cream-dim);line-height:1.9;letter-spacing:.04em}
+.cta-sig span{color:var(--cream)}
+
+/* ─── FOOTER ─── */
+.foot{border-top:1px solid var(--rule);padding:26px 0 40px}
+.foot p{font-family:var(--mono);font-size:10px;color:var(--cream-dim);letter-spacing:.06em;line-height:1.9;max-width:860px}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-in">
+    <div class="topnav-brand">MBRACE <em>Insight</em> — DMV HVAC Visibility Report</div>
+    <div class="topnav-links">
+      <a href="#giants">The Two Giants</a>
+      <a href="#matrix">The Gap Matrix</a>
+      <a href="#openings">The 8 Openings</a>
+      <a href="#stakes">Why It Matters</a>
+      <a href="#contact">Talk</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="mono-label">Independent market analysis · DMV / Mid-Atlantic · August 2026</div>
+    <h1>Two companies own DMV HVAC visibility.<br>They left <em>eight doors open.</em></h1>
+    <p class="hero-sub">Michael &amp; Son and F.H. Furr dominate the searches your customers make. But scale forces them to publish <strong>generic content for everyone</strong> — which means the questions homeowners actually ask go unanswered. Every unanswered question is a door. <strong>This is the map of the doors.</strong></p>
+    <div class="hero-meta">
+      <div><span>2</span>companies dominating search</div>
+      <div><span>8</span>content gaps neither has filled</div>
+      <div><span>0</span>utility rebate pages between them</div>
+      <div><span>1</span>window to claim it — closing</div>
+    </div>
+  </div>
+</header>
+
+<!-- WHY VISIBILITY -->
+<section class="sec" id="stakes">
+  <div class="wrap rv">
+    <div class="mono-label">The New Rules</div>
+    <h2>In the DMV, visibility isn't marketing. <em>It's the market.</em></h2>
+    <p class="lede">When a Kensington homeowner's AC dies in July, she doesn't flip through a phone book. She asks Google — and increasingly, she asks ChatGPT, Gemini, or the AI summary at the top of her search results. <strong>Whoever those systems cite becomes the answer.</strong> And they cite whoever published the most specific, most helpful, most authoritative content about her exact situation.</p>
+    <div class="vis-band">
+      <p class="big">The giants win on ad budget. But AI search doesn't read ad budgets — <em>it reads answers.</em></p>
+      <p>Michael &amp; Son runs 500+ trucks and has been at it since 1976. F.H. Furr calls itself "Absolutely the Best" and has been growing since 1981. Both spend heavily on paid search and both hold strong map-pack positions across the region. On money alone, no independent outspends them.</p>
+      <p>But organic and AI-driven visibility runs on different fuel: <strong>specificity, honesty, and local knowledge</strong> — the three things a regional giant structurally cannot produce. A company serving five states cannot write about why 1930s Chevy Chase colonials freeze their evaporator coils, or what a Thurmont propane household actually qualifies for under EmPOWER Maryland. You can. And the systems deciding who gets recommended are hungry for exactly that content — because <strong>almost nobody in this market is publishing it.</strong></p>
+      <p>This also serves the homeowner. The company that publishes real prices, real rebate numbers, and honest comparisons is the company that lets people make an informed decision — and the trust that builds is the same signal that search engines and AI models reward. <strong>Comprehensiveness is both the customer play and the visibility play. They are the same move.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- THE GIANTS -->
+<section class="sec" id="giants">
+  <div class="wrap rv">
+    <div class="mono-label">Know the Incumbents</div>
+    <h2>The two companies at the top — <em>and what their scale costs them</em></h2>
+    <p class="lede">Both are formidable. Both earned their position. And both carry the same structural weakness: they are built to serve everyone, which means they speak specifically to no one.</p>
+    <div class="giants">
+      <div class="giant">
+        <div class="giant-tier">Incumbent 01</div>
+        <h3>Michael &amp; Son</h3>
+        <div class="giant-sub">Est. 1976 · Alexandria, VA · VA / MD / DC / NC / SC</div>
+        <ul class="giant-facts">
+          <li><strong>500+ service trucks</strong>, 14 metro locations, "fastest service" positioning — built for volume and speed</li>
+          <li><strong>No published pricing.</strong> Financing offers, yes. Real cost ranges a homeowner can plan around, no</li>
+          <li><strong>No utility rebate content.</strong> Zero pages on EmPOWER Maryland, BGE, Pepco, or Dominion incentives</li>
+          <li><strong>129 BBB complaints in 3 years</strong> — recurring themes: recommended replacements later fixed cheaply elsewhere, high diagnostic charges, repeat visits for the same issue, membership billing disputes</li>
+          <li>Location pages exist, but they're <strong>city-level templates</strong> — no neighborhood, no housing-stock, no era-specific knowledge</li>
+        </ul>
+        <div class="giant-verdict">The speed machine. Wins the emergency call, loses the trust conversation — and publishes nothing that helps a homeowner decide.</div>
+      </div>
+      <div class="giant">
+        <div class="giant-tier">Incumbent 02</div>
+        <h3>F.H. Furr</h3>
+        <div class="giant-sub">Est. 1981 · Manassas, VA · VA / MD / DC / DE</div>
+        <ul class="giant-facts">
+          <li><strong>"Absolutely the Best"</strong> brand promise, 45+ years, aggressive expansion across four states including Richmond and Delaware</li>
+          <li><strong>Flat-rate pricing claimed, numbers withheld.</strong> "No surprise fees" is a slogan, not a published price sheet</li>
+          <li><strong>No heat pump decision content.</strong> The single biggest shift in DMV home comfort — electrification — has no educational depth on their site</li>
+          <li><strong>No rebate content</strong> — nothing on EmPOWER Maryland, BGE, Pepco, Dominion, or Potomac Edison programs</li>
+          <li>Regional pages (NoVA, Richmond, Maryland, Delaware) but <strong>zero hyperlocal or historic-home coverage</strong> — no plaster-wall, no-ductwork, radiator-home content anywhere</li>
+        </ul>
+        <div class="giant-verdict">The membership machine. Preferred Partner Plans drive recurring revenue — but the educational content that earns modern search visibility simply isn't there.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GAP MATRIX -->
+<section class="sec" id="matrix">
+  <div class="wrap rv">
+    <div class="mono-label">The Evidence</div>
+    <h2>The gap matrix: what neither giant publishes — <em>and what it's worth</em></h2>
+    <p class="lede">Eight categories of content that homeowners search for, AI systems cite, and Google rewards. Reviewed against both companies' public websites and profiles, August 2026.</p>
+
+    <div class="matrix">
+      <div class="mx-row mx-hdr">
+        <div class="mx-cell">Content category</div>
+        <div class="mx-cell">M&amp;S</div>
+        <div class="mx-cell">F.H. Furr</div>
+        <div class="mx-cell">The opening</div>
+      </div>
+
+      <div class="mx-row">
+        <div class="mx-cell"><div class="mx-cat">Utility rebate content<small>EmPOWER Maryland · BGE · Pepco · Dominion · Potomac Edison — actual 2026 numbers with live links</small></div></div>
+        <div class="mx-cell mx-mark" data-co="M&S"><span class="mk mk-no">✕</span> None</div>
+        <div class="mx-cell mx-mark" data-co="Furr"><span class="mk mk-no">✕</span> None</div>
+        <div class="mx-cell mx-open"><strong>Completely unowned.</strong> The single highest-intent page in the market — homeowners search rebates by utility name, and no major player answers.</div>
+      </div>
+
+      <div class="mx-row">
+        <div class="mx-cell"><div class="mx-cat">Transparent pricing<small>Real cost ranges for repair and replacement a homeowner can plan around</small></div></div>
+        <div class="mx-cell mx-mark" data-co="M&S"><span class="mk mk-no">✕</span> Hidden</div>
+        <div class="mx-cell mx-mark" data-co="Furr"><span class="mk mk-part">◐</span> Claimed</div>
+        <div class="mx-cell mx-open"><strong>Massive trust delta.</strong> Publish honest ranges and you instantly become the company that respects the homeowner's intelligence.</div>
+      </div>
+
+      <div class="mx-row">
+        <div class="mx-cell"><div class="mx-cat">Heat pump decision content<small>Heat pump vs. gas in Maryland winters · cold-climate performance below 20°F · oil &amp; propane conversion economics</small></div></div>
+        <div class="mx-cell mx-mark" data-co="M&S"><span class="mk mk-part">◐</span> Service pages</div>
+        <div class="mx-cell mx-mark" data-co="Furr"><span class="mk mk-no">✕</span> None</div>
+        <div class="mx-cell mx-open"><strong>The electrification wave has no guide.</strong> Whoever answers "is a heat pump worth it here?" honestly owns the decision stage of every install.</div>
+      </div>
+
+      <div class="mx-row">
+        <div class="mx-cell"><div class="mx-cat">Right-sizing science<small>Manual J load calculations · blower door testing · air sealing before installation — the sequence that protects the homeowner</small></div></div>
+        <div class="mx-cell mx-mark" data-co="M&S"><span class="mk mk-no">✕</span> None</div>
+        <div class="mx-cell mx-mark" data-co="Furr"><span class="mk mk-no">✕</span> None</div>
+        <div class="mx-cell mx-open"><strong>Technical authority, unclaimed.</strong> Teaching why the square-footage guess wrecks systems separates real installers from box-swappers — in Google's eyes and the homeowner's.</div>
+      </div>
+
+      <div class="mx-row">
+        <div class="mx-cell"><div class="mx-cat">Historic &amp; older home expertise<small>Plaster walls · no ductwork · cast-iron radiators · balloon framing · pre-1960 housing stock</small></div></div>
+        <div class="mx-cell mx-mark" data-co="M&S"><span class="mk mk-no">✕</span> None</div>
+        <div class="mx-cell mx-mark" data-co="Furr"><span class="mk mk-no">✕</span> None</div>
+        <div class="mx-cell mx-open"><strong>A category of one, available.</strong> From Chevy Chase colonials to Frederick farmhouses to Old Town rowhouses — a huge slice of DMV housing has no dedicated authority.</div>
+      </div>
+
+      <div class="mx-row">
+        <div class="mx-cell"><div class="mx-cat">Hyperlocal diagnostic content<small>Neighborhood-level, housing-era-level answers: "why do Kensington homes freeze their AC every July"</small></div></div>
+        <div class="mx-cell mx-mark" data-co="M&S"><span class="mk mk-part">◐</span> City templates</div>
+        <div class="mx-cell mx-mark" data-co="Furr"><span class="mk mk-part">◐</span> Region pages</div>
+        <div class="mx-cell mx-open"><strong>The un-fakeable moat.</strong> A five-state operation cannot write street-level knowledge. The company that lives there can — and AI summaries eat it up.</div>
+      </div>
+
+      <div class="mx-row">
+        <div class="mx-cell"><div class="mx-cat">Honest-broker education<small>How to read a quote · when repair beats replacement · what a real maintenance visit includes · when NOT to buy</small></div></div>
+        <div class="mx-cell mx-mark" data-co="M&S"><span class="mk mk-no">✕</span> None</div>
+        <div class="mx-cell mx-mark" data-co="Furr"><span class="mk mk-no">✕</span> None</div>
+        <div class="mx-cell mx-open"><strong>The anti-upsell position.</strong> The complaint pattern at the top of this market is "they sold me what I didn't need." Publishing the honest version converts that anger into your pipeline.</div>
+      </div>
+
+      <div class="mx-row">
+        <div class="mx-cell"><div class="mx-cat">Real-job storytelling<small>GBP posts with actual jobs, actual neighborhoods, actual findings — the content Google Business Profile rewards most</small></div></div>
+        <div class="mx-cell mx-mark" data-co="M&S"><span class="mk mk-part">◐</span> Generic posts</div>
+        <div class="mx-cell mx-mark" data-co="Furr"><span class="mk mk-part">◐</span> Promotional</div>
+        <div class="mx-cell mx-open"><strong>Trust at the moment of choice.</strong> "Here's what we found inside a 40-year furnace in Silver Spring" beats any coupon post ever written.</div>
+      </div>
+    </div>
+
+    <div class="legend-row">
+      <div><span class="mk mk-no">✕</span> Absent</div>
+      <div><span class="mk mk-part">◐</span> Thin / generic</div>
+      <div><span class="mk mk-yes">✓</span> Owned</div>
+    </div>
+  </div>
+</section>
+
+<!-- TWO AUDIENCES -->
+<section class="sec">
+  <div class="wrap rv">
+    <div class="mono-label">One Strategy, Two Wins</div>
+    <h2>Every gap serves the homeowner <em>and</em> feeds the algorithm</h2>
+    <div class="duo">
+      <div class="duo-card a">
+        <div class="mono-label">For the homeowner</div>
+        <h3>The most informed decision in the market</h3>
+        <p>Real rebate numbers with live links. Honest cost ranges. A straight answer on whether a heat pump survives a Maryland cold snap. Guidance specific to <strong>their house</strong> — its era, its construction, its neighborhood.</p>
+        <p>No one at the top of this market gives homeowners that. The company that does becomes the one they trust before the first phone call — and the one they tell their neighbors about after.</p>
+      </div>
+      <div class="duo-card b">
+        <div class="mono-label">For your visibility</div>
+        <h3>The content Google and AI models cite</h3>
+        <p>Search engines and LLMs rank <strong>specific, authoritative, locally-grounded answers</strong> above brand size. Every gap in the matrix is a query cluster with real volume and no strong answer.</p>
+        <p>Fill them and you're not competing with the giants' ad budgets — you're standing alone in the territory they structurally cannot enter. That's what owning a market segment looks like in 2026.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPENINGS DETAIL -->
+<section class="sec" id="openings">
+  <div class="wrap rv">
+    <div class="mono-label">The Playbook</div>
+    <h2>Eight openings, ranked by <em>speed to impact</em></h2>
+    <p class="lede">Each one is a page, a system, or a habit. None requires outspending anyone. All compound.</p>
+    <div class="openings">
+      <div class="open-card">
+        <div class="open-num">1</div>
+        <h3>The utility rebate page</h3>
+        <p>One page per utility territory — BGE, Pepco, Potomac Edison, Dominion — with <strong>2026 numbers, eligibility, and live application links.</strong> Oil and propane conversions hit the maximum tiers.</p>
+        <div class="open-why">WHY NOW → Zero competition from either giant. Highest-intent searches in the market.</div>
+      </div>
+      <div class="open-card">
+        <div class="open-num">2</div>
+        <h3>The honest pricing page</h3>
+        <p>Real ranges for the ten most common jobs in your area, with what moves the number up or down. <strong>The giants hide this. That's exactly why it wins.</strong></p>
+        <div class="open-why">WHY NOW → Instantly differentiates against the #1 complaint theme at the top of the market.</div>
+      </div>
+      <div class="open-card">
+        <div class="open-num">3</div>
+        <h3>The heat pump decision guide</h3>
+        <p>Heat pump vs. gas for your county. Cold-climate performance, honestly. What the install actually costs <strong>after</strong> rebates. The decision-stage content of the electrification decade.</p>
+        <div class="open-why">WHY NOW → F.H. Furr has nothing here. The market's biggest shift has no local authority.</div>
+      </div>
+      <div class="open-card">
+        <div class="open-num">4</div>
+        <h3>The right-sizing story</h3>
+        <p>Why the blower door test and Manual J calculation come <strong>before</strong> any equipment decision — and how skipping them wrecks systems and comfort. Sequence as philosophy.</p>
+        <div class="open-why">WHY NOW → Technical authority signal that neither giant teaches. LLMs cite the teacher.</div>
+      </div>
+      <div class="open-card">
+        <div class="open-num">5</div>
+        <h3>The historic homes flag</h3>
+        <p>Plaster walls, no ductwork, radiators, stone construction. A dedicated page for pre-1960 housing makes you <strong>the only name</strong> in a niche the franchises can't touch.</p>
+        <div class="open-why">WHY NOW → Enormous DMV housing stock, zero dedicated authority anywhere in the market.</div>
+      </div>
+      <div class="open-card">
+        <div class="open-num">6</div>
+        <h3>The neighborhood answer</h3>
+        <p>"Why does this happen in <strong>this</strong> neighborhood's homes" — content written from real service calls, at a specificity no five-state operation can fake.</p>
+        <div class="open-why">WHY NOW → City-template pages are all the giants have. Street-level knowledge beats them.</div>
+      </div>
+      <div class="open-card">
+        <div class="open-num">7</div>
+        <h3>The honest-broker library</h3>
+        <p>How to read any contractor's quote. When repair beats replacement. The maintenance visit checklist, no secrets. Even <strong>"why we sometimes tell you not to buy."</strong></p>
+        <div class="open-why">WHY NOW → Converts the market's trust deficit — 129 BBB complaints' worth — into your advantage.</div>
+      </div>
+      <div class="open-card">
+        <div class="open-num">8</div>
+        <h3>The real-job engine</h3>
+        <p>A steady cadence of Google Business Profile posts built from actual jobs: the neighborhood, the finding, the fix. <strong>Proof, not promotion</strong> — at the exact moment homeowners compare profiles.</p>
+        <div class="open-why">WHY NOW → Both giants post generic promos. Authentic job stories dominate the map pack.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE WINDOW -->
+<section class="sec">
+  <div class="wrap rv">
+    <div class="mono-label">The Clock</div>
+    <h2>These gaps exist because the giants haven't needed to fill them. <em>Yet.</em></h2>
+    <div class="vis-band">
+      <p class="big">First to publish becomes the reference. The reference is what AI cites. <em>What AI cites is who gets called.</em></p>
+      <p>Search behavior in the DMV is shifting faster than anywhere outside the coasts — AI summaries now sit above the map pack on most HVAC queries, and they synthesize their answers from whoever published the most authoritative local content. Once a source becomes the cited reference for "heat pump rebates in Maryland" or "HVAC for older homes near DC," displacing it is <strong>far harder than claiming it was.</strong></p>
+      <p>Every one of the eight openings is claimable today by an independent company with real local knowledge and a system for publishing it. In twelve months, some of them won't be. <strong>The question is only who moves first in each territory.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="wrap rv">
+    <div class="mono-label">MBRACE Insight LLC</div>
+    <h2>This analysis is the free part.<br><em>The system is the conversation.</em></h2>
+    <p>Behind this report sits a working engine: a 90-day, competitor-gap-targeted content calendar, ready-to-publish rebate and historic-home pages, a review response system, and a Google Business Profile cadence built from your real jobs — all mapped to the exact openings above, customized to <strong>your service area, your housing stock, your utility territory.</strong></p>
+    <p>If you run an independent HVAC company in the DMV and you want to see what your version of this map looks like — with your neighborhoods and your competitors in it — that's a conversation worth twenty minutes.</p>
+    <a class="cta-btn" href="mailto:mfisher2121@gmail.com?subject=DMV%20Visibility%20Gap%20—%20show%20me%20my%20map">Request your market map</a>
+    <div class="cta-sig">
+      <span>Max Fisher</span> · MBRACE Insight LLC<br>
+      Gaithersburg, Maryland · Serving the DMV &amp; Mid-Atlantic<br>
+      mfisher2121@gmail.com
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>Prepared by MBRACE Insight LLC, August 2026. Observations reflect a review of publicly available websites, Google Business Profiles, and Better Business Bureau records for Michael &amp; Son Services and F.H. Furr Plumbing, Heating, Air Conditioning &amp; Electrical as of the preparation date. Both are capable, established companies; this report concerns content and visibility strategy, not service quality. All trademarks belong to their respective owners. Rebate program figures change — verify current numbers with EmPOWER Maryland, BGE, Pepco, Potomac Edison, and Dominion Energy before publication.</p>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } }), { threshold: 0.08 });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+{
+  "name": "MBRACE HVAC Outreach Drop Package",
+  "audience": "DMV HVAC companies",
+  "hosted_at": "/playbooks/",
+  "package_page": "/package/",
+  "personalize": "Append ?company=<Company Name>&date=<YYYY-MM-DD> to any playbook URL to fill in the company name and calendar dates.",
+  "items": [
+    {
+      "id": "quote-follow-up",
+      "file": "/playbooks/quote-follow-up.html",
+      "title": "7-Day Quote Follow-Up System",
+      "group": "playbooks"
+    },
+    {
+      "id": "lead-qualification",
+      "file": "/playbooks/lead-qualification.html",
+      "title": "5-Question Pre-Qualifier",
+      "group": "playbooks"
+    },
+    {
+      "id": "after-hours",
+      "file": "/playbooks/after-hours-call-capture.html",
+      "title": "After-Hours Call Capture",
+      "group": "playbooks"
+    },
+    {
+      "id": "hyper-local",
+      "file": "/playbooks/hyper-local-authority.html",
+      "title": "Hyper-Local Content Authority",
+      "group": "playbooks"
+    },
+    {
+      "id": "metrics",
+      "file": "/playbooks/marketing-metrics.html",
+      "title": "5 Marketing Metrics That Matter",
+      "group": "playbooks"
+    },
+    {
+      "id": "future-proof",
+      "file": "/playbooks/future-proof-strategy.html",
+      "title": "Future-Proofing an Honest HVAC Business",
+      "group": "playbooks"
+    },
+    {
+      "id": "gbp-calendar",
+      "file": "/playbooks/90-day-gbp-calendar.html",
+      "title": "90-Day GBP Calendar",
+      "group": "calendars"
+    },
+    {
+      "id": "decision-center",
+      "file": "/decision-center/",
+      "title": "Home Electrification Decision Center (live demo)",
+      "group": "demos"
+    },
+    {
+      "id": "owned-visibility-site",
+      "file": "/deliverables/samples/owned-visibility-site.html",
+      "title": "Owned Visibility Site Sample",
+      "group": "demos"
+    },
+    {
+      "id": "leave-behind-template",
+      "file": "/deliverables/templates/leave-behind-letter.md",
+      "title": "Leave-behind letter template",
+      "group": "templates"
+    }
+  ]
+}
